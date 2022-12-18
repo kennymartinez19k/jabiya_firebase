@@ -1,0 +1,27 @@
+// login
+.login-container {
+  margin: 0;
+  display: block;
+  text-align: center;
+}
+.logo {
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 180px;
+  }
+}
+.login-container .wel-msg {
+  font-size: 20px;
+  color: #29292b;
+}
+.login-container .wel-submsg {
+  font-size: 12px;
+  color: #c1c1c1;
+}
+.footer-btn-grp {
+  position: absolute;
+  bottom: 30px;
+  width: 92%;
+}

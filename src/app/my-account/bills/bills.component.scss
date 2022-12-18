@@ -1,0 +1,35 @@
+ion-item {
+  border-bottom: 2px solid #ebebeb;
+  --inner-border-width: 0 0 0 0;
+}
+ion-label {
+  margin: 8px 10px 8px 2px;
+  font-size: 14px;
+}
+.bold {
+  font-weight: 600 !important;
+}
+h3,
+p {
+  font-size: 12px;
+  text-align: center;
+}
+.pdt-description {
+  padding-right: 16px;
+}
+.bg-white {
+  background-color: #fff;
+}
+.arrow-btn {
+  position: absolute;
+  top: -23px;
+}
+.border-bottom {
+  border-bottom: 1px solid #eee;
+}
+.padding-small{
+  padding: 10px 5px;
+}
+.arrow{
+  color: green;
+}

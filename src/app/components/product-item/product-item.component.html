@@ -1,0 +1,28 @@
+<ion-item>
+    
+      <div class="pdt-quantity" slot="start">
+        <ion-button fill="outline" class="add-btn" (click)="reduceProductQuantity()">
+          <ion-icon slot="end" name="remove-outline"></ion-icon>
+        </ion-button>
+        <!-- <ion-text class="m-8" color="primary">{{product.quantity}}</ion-text> -->
+        <input onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"  (keyup)="changeQuantity($event)" min="0" type="number" [value]="product.quantity == 0 ? null : product.quantity " placeholder="0" class="edit-value"/>
+        <ion-button fill="outline" class="add-btn" (click)="addProductQuantity()">
+          <ion-icon slot="end" name="add-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <ion-thumbnail slot="start">
+        <app-cached-img (click)="goToProductDetails(product)" class="image-height" [src]="{imageUrl: product.image_url, imageHash: product.image_hash}"
+          [spinner]="false">
+        </app-cached-img>
+      </ion-thumbnail>
+    <ion-label class="info-product">
+      <h3 class="pdt-name text" (click)="goToProductDetails(product)" color="secondary">{{product.name}}</h3>
+      <h3 color="secondary" *ngIf="product.price != product.old_price" (click)="goToProductDetails(product)" class="pdt-price text is_discount">{{ round(product.old_price) }}</h3>
+      <h3 color="secondary" (click)="goToProductDetails(product)" class="pdt-price text">{{ round(product.price) }}</h3>
+      <h3 color="secondary" *ngIf="product.available_threshold >= product.free_qty" (click)="goToProductDetails(product)" class="pdt-price text text-blue">(quedan {{ product.free_qty }})</h3>
+      <h3 color="secondary" *ngIf="product.minimum_order_qty > 0" class="text-blue text mr-3">Cantidad minima: {{product.minimum_order_qty }}</h3>
+      <ion-button [class.btnDisabled]="product.quantity == 0" fill="solid" class="cart-btn" [color]="product.quantity == 0 ? '#8f8f8f' : 'secondary'"
+        (click)="addProduct()">Añadir</ion-button>
+    </ion-label>
+ 
+</ion-item>

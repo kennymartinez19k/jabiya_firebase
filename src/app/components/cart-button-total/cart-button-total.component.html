@@ -1,0 +1,5 @@
+<ion-button routerLink={{router}}  color="primary" fill="solid" class="round-btn" [class.blinking]="getTotal() > 0 && isCart != true">
+  <ion-icon name="cart-outline" class="mr-1">
+  </ion-icon>
+  <p color="secondary">{{round(getTotal())}}</p>
+</ion-button>

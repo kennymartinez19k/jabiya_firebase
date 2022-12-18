@@ -1,0 +1,86 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <div class="info-header">
+      <ion-buttons slot="start">
+        <ion-button routerLink="../home" color="dark" fill="clear">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <p>{{userData?.company_name}}</p>
+    </div>
+
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [class.hidden]="searchValue">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ng-container *ngFor="let banner of banners;let i=index">
+      <ion-slide (click)="goToProductDetails(banner?.product_id)">
+        <!-- <img [src]="banner.image ? this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+      + banner.image) : '../../assets/images/banner1.png' "> -->
+        <app-cached-img [src]="{imageUrl: banner.image_url, imageHash: banner.image_hash}" [spinner]="false">
+        </app-cached-img>
+      </ion-slide>
+    </ng-container>
+  </ion-slides>
+  <h2 class="pdt-name ion-margin">{{language === 'English' ? languageJson.promoPage.english.promo :
+    languageJson.promoPage.spanish.promo}}</h2>
+  <p class="wel-submsg ion-margin">{{language === 'English' ? languageJson.promoPage.english.description :
+    languageJson.promoPage.spanish.description}}</p>
+
+  <ion-list class="list-items">
+    <ng-container *ngFor="let categorie of categories;let i=index">
+      <ng-container *ngIf="i<=2">
+        <ion-item (click)="gotoPdtCategory(categorie.id, categorie.name)" class="items">
+          <ion-thumbnail slot="start">
+            <img [src]="categorie.image_url">
+          </ion-thumbnail>
+          <ion-label>
+            <p color="tertiary" class="pdt-description ion-no-margin">{{categorie.name}}
+            </p>
+            <p class="wel-submsg">{{categorie.description}}</p>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+    </ng-container>
+  </ion-list>
+</ion-content>
+<ion-content [class.hidden]="!searchValue">
+  <div class="search-item-container">
+    <ion-card class="pdt-card search-item" *ngFor="let result of resultSearchProduct;let i=index">
+      <ion-item>
+        <div class="pdt-quantity" slot="start">
+          <ion-button fill="outline" class="add-btn" (click)="decreaseProductCountFilter(result)">
+            <ion-icon slot="end" name="remove-outline"></ion-icon>
+          </ion-button>
+          <ion-text class="m-8" color="primary">{{result?.quantity}}</ion-text>
+          <ion-button fill="outline" class="add-btn" (click)="increaseProductCountFilter(result)">
+            <ion-icon slot="end" name="add-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <ion-thumbnail slot="start">
+          <img [src]="result.image ? this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+                + result.image) : '../../assets/images/pdt1.png' ">
+        </ion-thumbnail>
+        <ion-label class="info-product">
+          <h3 class="pdt-name text" color="secondary">{{result?.name}}</h3>
+          <h3 class="pdt-name" color="secondary">
+            <!-- [Descripción Empaque] -->
+          </h3>
+          <p color="tertiary" class="pdt-description">
+            <!-- Detalles se incluyen aquí -->
+          </p>
+          <h3 color="secondary" class="pdt-price text">{{result?.currencySymbol}} {{result?.priceForShow}}</h3>
+          <ion-button [disabled]="result.quantity == 0" fill="solid" class="cart-btn" color="secondary"
+            (click)="addToCart(result, i)">
+            {{language === 'English' ? languageJson.promoPage.english.addbutton :
+            languageJson.promoPage.spanish.addbutton}}
+          </ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>
+<div class="loader" *ngIf="loading"></div>

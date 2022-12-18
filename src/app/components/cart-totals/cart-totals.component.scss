@@ -1,0 +1,253 @@
+ion-title {
+    font-family: "Nunito Sans";
+    font-size: 18px;
+}
+
+ion-footer ion-title {
+    padding-inline: 20px;
+}
+
+ion-content {
+    --background: #fbfbfb;
+}
+
+ion-thumbnail {
+    margin-top: 0px;
+    margin-bottom: 8px;
+    width: 50px;
+    height: 70px;
+    --padding-start: 8px;
+    margin-inline-end: 8px;
+}
+
+.pdt-description {
+    padding-right: 16px;
+}
+
+.redeem-btn {
+    margin: 10px 0px 0px 0px;
+    height: 36px;
+    --border-radius: 4px;
+}
+
+.red-text {
+    color: red;
+}
+
+ion-item {
+    border-bottom: 2px solid #ebebeb;
+    --inner-border-width: 0 0 0 0;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #eee;
+}
+
+.del-btn {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    font-size: 20px;
+    height: 2.2em;
+}
+
+.change-btn {
+    height: 1em;
+    font-weight: 600;
+}
+
+ion-label {
+    margin: 10px 8px 10px 8px;
+    font-size: 20px;
+}
+
+.pdt-price {
+    margin: 10px 0px !important;
+}
+
+.bold {
+    font-weight: 600 !important;
+}
+
+h3,
+p {
+    font-size: 14px;
+}
+
+h2 {
+    margin-top: 18px;
+    font-size: 16px;
+}
+
+.green-text {
+    color: #2fdf75;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.min-err-msg {
+    display: block;
+    background-color: #fce795;
+    padding: 10px;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 18px;
+    margin-right: 18px;
+    color: #ff2c2c;
+    font-weight: 600;
+    border-left: 12px solid #f35f54;
+}
+
+.div-card {
+    border-bottom: 2px solid #ebebeb;
+    background-color: #fff;
+    padding: 0px 8px;
+    width: 100%;
+}
+
+.div-card ion-item {
+    border-bottom: none;
+    --inner-border-width: 0 0 0 0;
+}
+
+.div-card ion-item.item-native {
+    padding-left: unset;
+    padding-right: unset;
+    padding-inline-start: 0px;
+    padding-inline-end: 0px;
+}
+
+.input-icon {
+    font-size: 20px;
+    margin-top: 70px;
+}
+
+.pdt-quantity {
+    bottom: 10px;
+}
+
+ion-radio {
+    margin: 0px 2px 0px 0px;
+    font-size: 14px;
+}
+
+.container-shopping-profile {
+    width: 100%;
+}
+
+.items-for-shop {
+    margin: 5px;
+}
+
+.point-input {
+    --padding-top: 5px;
+}
+
+.items-order-info {
+    width: 100%;
+}
+
+.container-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.items-for-shop {
+    width: 100%;
+    margin: 10px;
+}
+
+@media (min-width: 900px) {
+    .items-order-info {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .container-shopping-profile {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .list-item-shopping {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .item-shopping {
+        width: 47%;
+        margin: 10px;
+    }
+
+    .items-payment {
+        width: 48%;
+        background-color: #fff;
+        margin: 10px;
+    }
+
+    .info-address {
+        width: 100%;
+    }
+
+    .items-for-shop {
+        width: 47%;
+        margin: 10px;
+    }
+
+    .info-addres-item {
+        width: 100%;
+    }
+
+    .border-bottom {
+        border-bottom: 1px solid #eee;
+        margin: 10px;
+        background-color: #fff;
+    }
+}
+
+ion-item {
+    --highlight-color-valid: transparent;
+    --highlight-color-invalid: transparent;
+    --highlight-color-focused: var(--ion-color-light);
+}
+
+.sc-ion-input-md-h {
+    --padding-top: 4px !important;
+}
+
+.is_discount {
+    color: red;
+    margin: 0px 15px;
+    text-decoration: line-through;
+}
+
+.border {
+    color: red
+}
+
+.danger-text {
+    color: red
+}
+
+@media (max-width: 400px) {
+    .pdt-price {
+        margin: 10px 0px !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .is_discount {
+        margin: 5px 0px
+    }
+}
+
+.text-tached {
+    text-decoration: line-through;
+}

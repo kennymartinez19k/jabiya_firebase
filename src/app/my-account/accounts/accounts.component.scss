@@ -1,0 +1,55 @@
+.pdt-description {
+  padding-right: 16px;
+}
+.primary-color {
+  color: #176301;
+}
+.secondary-color {
+  color: #84ca08;
+}
+.border-bottom {
+  border-bottom: 1px solid #eee;
+}
+ion-label {
+  margin: 11px 20px 10px 8px;
+  font-size: 20px;
+}
+.pdt-price {
+  margin: 10px 0px !important;
+}
+.bold {
+  font-weight: 600 !important;
+}
+h3,
+p {
+  font-size: 14px;
+}
+h2 {
+  margin-top: 18px;
+  font-size: 16px;
+}
+.div-card {
+  border-bottom: 2px solid #ebebeb;
+  background-color: #fff;
+  padding: 0px 8px;
+}
+
+@media (min-width: 900px) {
+  .div-card {
+    width: 48%;
+    margin: 5px;
+  }
+}
+.mt-5{
+  margin-top: -5px;
+}
+
+.add-account{
+  align-items: center;
+}
+.add-account ion-col{
+  padding: 0px
+}
+.icon-plus{
+  font-size: 18px;
+}

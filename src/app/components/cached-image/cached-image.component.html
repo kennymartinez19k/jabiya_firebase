@@ -1,0 +1,13 @@
+<div class="container">
+  <img [src]="_src ? this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+  + _src) : '../../assets/images/pdt1.png' " *ngIf="_src !== ''; else loading;" [ngClass]="customClass ? customClass?.class : ''">
+   
+  <ng-template #loading>
+    <div class="ion-text-center" *ngIf="spinner">
+      <ion-spinner></ion-spinner>
+    </div>
+    <div *ngIf="!spinner">
+      <ion-skeleton-text animated style="width: 50%; height: 200px; margin: auto;"></ion-skeleton-text>
+    </div>
+  </ng-template>
+</div>

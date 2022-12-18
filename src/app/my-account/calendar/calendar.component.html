@@ -1,0 +1,152 @@
+<div *ngIf="showCalendar">
+  <div class="ion-text-center month-container">
+  <ion-button fill="clear" color="secondary" (click)="moveWeekByClick(activeSlideIndex-1)">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button>
+  <h2 color="dark" class="text-capitalize">
+    {{monthText}}
+  </h2>
+  <ion-button fill="clear" color="secondary" (click)="moveWeekByClick(activeSlideIndex+1)">
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </ion-button>
+</div>
+<ion-slides pager="false" [options]="slideOpts" (ionSlideDidChange)="sliderChanges()" #subscriptionSlider>
+  <ion-slide  *ngFor="let week of currentWeek; let i=index">
+    <div class="week-container" *ngFor="let weekDay of week">
+      <div [class.todayContainer]="weekDay?.today" ion-button class="ion-text-center" (click)="getDateDetails(weekDay, i)">
+        <h3 color="primary" class="text-uppercase">{{weekDay?.date | weekDay}}</h3>
+        <h3 class="date-count" >{{weekDay?.date | date:'dd'}}</h3>
+      </div>
+    </div>
+  </ion-slide>
+  <!-- 
+  <ion-slide>
+    <div class="week-container">
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Dom</h3>
+        <h3 class="date-count">8</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Lun</h3>
+        <h3 class="date-count">9</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Mar</h3>
+        <h3 class="date-count">10</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Mié</h3>
+        <h3 class="date-count">11</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Jue</h3>
+        <h3 class="date-count">12</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Vie</h3>
+        <h3 class="date-count">13</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Sáb</h3>
+        <h3 class="date-count">14</h3>
+      </div>
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="week-container">
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Dom</h3>
+        <h3 class="date-count">15</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Lun</h3>
+        <h3 class="date-count">16</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Mar</h3>
+        <h3 class="date-count">17</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Mié</h3>
+        <h3 class="date-count">18</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Jue</h3>
+        <h3 class="date-count">19</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Vie</h3>
+        <h3 class="date-count">20</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Sáb</h3>
+        <h3 class="date-count">21</h3>
+      </div>
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="week-container">
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Dom</h3>
+        <h3 class="date-count">22</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Lun</h3>
+        <h3 class="date-count">23</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Mar</h3>
+        <h3 class="date-count">24</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Mié</h3>
+        <h3 class="date-count">25</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Jue</h3>
+        <h3 class="date-count">26</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Vie</h3>
+        <h3 class="date-count">28</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Sáb</h3>
+        <h3 class="date-count">29</h3>
+      </div>
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="week-container">
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Dom</h3>
+        <h3 class="date-count">30</h3>
+      </div>
+      <div ion-button class="ion-text-center">
+        <h3 color="primary" class="text-uppercase">Lun</h3>
+        <h3 class="date-count">31</h3>
+      </div>
+      <div ion-button class="ion-text-center opacity">
+        <h3 color="primary" class="text-uppercase">Mar</h3>
+        <h3 class="date-count">1</h3>
+      </div>
+      <div ion-button class="ion-text-center opacity">
+        <h3 color="primary" class="text-uppercase">Mié</h3>
+        <h3 class="date-count">2</h3>
+      </div>
+      <div ion-button class="ion-text-center opacity">
+        <h3 color="primary" class="text-uppercase">Jue</h3>
+        <h3 class="date-count">3</h3>
+      </div>
+      <div ion-button class="ion-text-center opacity">
+        <h3 color="primary" class="text-uppercase">Vie</h3>
+        <h3 class="date-count">4</h3>
+      </div>
+      <div ion-button class="ion-text-center opacity">
+        <h3 color="primary" class="text-uppercase">Sáb</h3>
+        <h3 class="date-count">5</h3>
+      </div>
+    </div>
+  </ion-slide> -->
+</ion-slides>
+</div>

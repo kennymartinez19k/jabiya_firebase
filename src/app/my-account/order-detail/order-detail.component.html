@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{language === 'English' ? languageJson.orderDetailPage.english.detail :
+      languageJson.orderDetailPage.spanish.detail}}</ion-title>
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="!isLoading">
+  <ion-grid class="ion-padding border-bottom">
+    <ion-row>
+      <ion-col size="12" class="ion-text-left text-title">
+        <h2 class="pdt-name ion-no-margin" color="primary">{{language === 'English' ?
+          languageJson.orderDetailPage.english.orderno : languageJson.orderDetailPage.spanish.orderno}}: {{orderNumber}}</h2>
+      </ion-col>
+      <ion-col size="12" class="ion-text-left text-title">
+        <h2 class="pdt-name ion-no-margin" color="primary">{{language === 'English' ?
+          languageJson.orderDetailPage.english.status : languageJson.orderDetailPage.spanish.status}}: {{orderDetails.picking_status.text}}
+        </h2>
+      </ion-col>
+      <ion-col size="12" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.orderDetailPage.english.expdel :
+          languageJson.orderDetailPage.spanish.expdel}} 
+          <span class="bold">{{deliverydateToShow}}</span> 
+        </p>
+      </ion-col>
+      <ion-col size="12" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ?
+          languageJson.orderDetailPage.english.orderon : languageJson.orderDetailPage.spanish.orderon}} <span
+            class="bold">{{orderedDate}}</span>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="ion-no-padding border-bottom div-card">
+    <ng-container *ngFor="let product of orderDetails.orderLines">
+      <ion-row class="border-bottom ion-padding">
+        <ion-col size="12" class="ion-text-left">
+          <p color="tertiary" class="bold pdt-description ion-no-margin">{{product?.productName}}</p>
+          <p color="tertiary" class="pdt-description ion-no-margin">{{' '}}</p>
+        </ion-col>
+        <ion-col size="4" class="ion-text-left">
+          <h3 color="secondary" class="ion-no-margin">{{round(product.price)}}</h3>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <h3 color="secondary" class="ion-no-margin">x{{product.qty_to_deliver}}</h3>
+        </ion-col>
+        <ion-col size="4" class="ion-text-right">
+          <h3 color="secondary" class="bold ion-no-margin">
+            {{round(product?.productPriceSubtotal)}}</h3>
+        </ion-col>
+        <ion-col size="12" *ngIf="product?.qty_to_deliver !== product.productQuantity" class="ion-text-left">
+          <p color="tertiary" class="pdt-description warning ion-no-margin">{{language === 'English' ?
+            languageJson.orderDetailPage.english.warningorderTo : languageJson.orderDetailPage.spanish.warningorderTo}} 
+            {{product.productQuantity}}
+            {{language === 'English' ?
+            languageJson.orderDetailPage.english.warningorderrest : languageJson.orderDetailPage.spanish.warningorderrest}}
+            {{product.qty_to_deliver}}
+          </p>
+        </ion-col>
+        <ion-col size="12" *ngIf="product?.warning_stock" class="ion-text-left">
+          <p color="tertiary" class="pdt-description warning ion-no-margin">{{product?.warning_stock}}</p>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <ng-container *ngFor="let product of productsUnvailable">
+      <ion-row class="border-bottom ion-padding">
+        <ion-col size="12" class="ion-text-left">
+          <p color="tertiary" class="bold pdt-description ion-no-margin">{{product?.product_name}}</p>
+          <p color="tertiary" class=" ion-no-margin product-unvailable">{{language === 'English' ?
+            languageJson.orderDetailPage.english.productUnvailable : languageJson.orderDetailPage.spanish.productUnvailable}}</p>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="bold pdt-description ion-no-margin">Subtotal</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="primary" class="bold ion-text-right ion-no-margin"> {{round(orderSubTotal)}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="bold pdt-description ion-no-margin">{{language === 'English' ?
+          languageJson.orderDetailPage.english.tax : languageJson.orderDetailPage.spanish.tax}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="primary" class="bold ion-text-right ion-no-margin"> {{round(orderTaxAmount)}} </h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="6" class="ion-text-left">
+        <h2 color="tertiary" class="bold pdt-description ion-no-margin">Total</h2>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h2 color="primary" class="bold ion-text-right ion-no-margin"> {{round(orderTotal)}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="6" class="ion-text-left">
+        <h3 color="tertiary" class="bold green-text pdt-description ion-no-margin">{{language === 'English' ?
+          languageJson.orderDetailPage.english.save : languageJson.orderDetailPage.spanish.save}}</h3>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="primary" class="bold green-text ion-text-right ion-no-margin"> {{round(savings)}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="12" class="ion-text-lef">
+        <p color="tertiary" class="pdt-description ion-margin">{{language === 'English' ?
+          languageJson.orderDetailPage.english.buy : languageJson.orderDetailPage.spanish.buy}}</p>
+        <div class="container-btn">
+          <button  (click)="alertCancelOrder()" class="item-btn"  [class.disabledCancel]="orderDetails.picking_status.text == 'Cancelada'" 
+            expand="block">{{language === 'English'? languageJson.orderDetailPage.english.deleteorder
+            :languageJson.orderDetailPage.spanish.deleteorder}}
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

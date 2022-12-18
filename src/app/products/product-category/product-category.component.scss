@@ -1,0 +1,78 @@
+ion-thumbnail {
+  width: 80px;
+  //   height: 40px;
+}
+ion-title {
+  font-family: "Nunito Sans";
+}
+.pdt-name {
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+.pdt-description {
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+ion-item {
+  border-bottom: 2px solid #ebebeb;
+  --inner-border-width: 0 0 0 0;
+}
+.pdt-header {
+  background-image: linear-gradient(
+    to bottom,
+    #3dc2c4,
+    #36bcbd,
+    #2fb6b6,
+    #28b0b0,
+    #20aaa9
+  );
+  height: auto;
+  padding: 15px 20px 5px;
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+}
+.pdt-header-title {
+  color: #ffffff;
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+.list-without-category{
+  margin: 0px auto;
+}
+.list-item-category{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item-category{
+  width: 100%;
+  margin: 10px;
+  padding: 5px 0px;
+
+}
+
+@media (min-width: 600px) {
+  .item-category{
+    width: 45%;
+    cursor: pointer;
+  }
+}
+@media (min-width: 900px) {
+  .item-category{
+    width: 30%;
+    margin: 15px;
+
+  }
+}
+@media (max-width: 400px){
+  
+  .pdt-header-title {
+    font-size: 18px;
+  }
+}
+

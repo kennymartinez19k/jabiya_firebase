@@ -1,0 +1,137 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar class="header">
+    <div class="bar-header">
+      <div class="info-header">
+        <ion-buttons slot="start" auto-hide="false">
+          <ion-menu-button enable-menu-with-back-views=“true”></ion-menu-button>
+        </ion-buttons>
+        <p>{{userData?.company_name}}</p>
+      </div>
+      <div class="img-header">
+        <img src="../../assets/images/logo.png" alt="">
+        <p class="mode-env">{{modeEnv}} {{version}}</p>
+      </div>
+    </div>
+    <!-- <button (click)="logOut()">Cerrar session</button> -->
+    <div class="title-div">
+
+      <ion-searchbar [(ngModel)]="filterName" #mySearchbar showCancelButton="focus"
+        placeholder="{{language === 'English' ? languageJson.homePage.english.searchProduct : languageJson.homePage.spanish.searchProduct}}"
+        (click)="filterProduct('')" (ionClear)="onCancel($event)" (keyup)="filterProduct($event, mySearchbar.value)" class="search-bar"></ion-searchbar>
+      <ion-buttons slot="end">
+        <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+      </ion-buttons>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" [class.hidden]="searchValue">
+  <ion-slides pager="true" [options]="slideOpts" (ionSlideTouchEnd)="slideChanged()" (ionViewDidEnter)="ionViewDidEnter()">
+    <ng-container *ngFor="let banner of banners;let i=index">
+
+      <ion-slide (click)="goToProductDetails(banner?.product_id)">
+        <app-cached-img [src]="{imageUrl: banner.image_url, imageHash: banner.image_hash}" [spinner]="false">
+        </app-cached-img>
+      </ion-slide>
+    </ng-container>
+
+  </ion-slides>
+  <div class="previous-order-conatiner">
+    <div class="ion-padding-horizontal ion-padding-top ion-text-left">
+      <h2 class="wel-msg"> {{language === 'English' ? languageJson.homePage.english.titlemsg :
+        languageJson.homePage.spanish.titlemsg}} </h2>
+      <p class="wel-submsg">{{language === 'English' ? languageJson.homePage.english.subtitle :
+        languageJson.homePage.spanish.subtitle}} </p>
+    </div>
+    <div class="slider-container">
+      <div class="container-arrow-slider" (click)="slidePrev()" *ngIf="easyOrderProducts.length > 0">
+        <ion-icon name="chevron-back-outline" class="arrow"></ion-icon>
+      </div>
+      <ion-slides [options]="sliderContainerOpts" #slides class="m-6">
+        <ng-container *ngFor="let easyOrderProduct of easyOrderProducts;let i=index">
+          <ion-slide class="pdt-slider">
+            <ion-card class="pdt-card">
+              <div *ngIf="easyOrderProduct.free_qty == 0" [class.soldOut]="easyOrderProduct.free_qty == 0">
+                <img src="../../../assets/images/productoAgotado.png" alt="" srcset="">
+              </div>
+              <app-product-item class="product" [product]="easyOrderProduct" [productIndex]="i"></app-product-item>
+            </ion-card>
+          </ion-slide>
+        </ng-container>
+      </ion-slides>
+      <div class="container-arrow-slider" (click)="slideNext()" *ngIf="easyOrderProducts.length > 0">
+        <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+      </div>
+    </div>
+  </div>
+  <div class="categories-conatiner">
+    <div class="ion-padding ion-text-left">
+      <h2 class="wel-msg">{{language === 'English' ? languageJson.homePage.english.promo :
+        languageJson.homePage.spanish.promo}}</h2>
+        <p class="wel-submsg">{{language === 'English' ? languageJson.homePage.english.promList :
+          languageJson.homePage.spanish.promList}}</p>
+    </div>
+    <ion-grid class="p-8">
+      <ion-row class="ion-no-padding main-promo">
+        <ng-container *ngFor="let categorie of categories;let i=index">
+          <ng-container *ngIf="i<=2">
+            <ion-col size="4" (click)="gotoPdtCategory(categorie)" class="ion-padding">
+              <img [src]="categorie.image_url" class="cat-card">
+            </ion-col>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngFor="let pointCategory of pointsCategories;let i=index">
+          <ion-col size="4" (click)="gotoPointsCategory(pointCategory.id, pointCategory.name)" class="ion-padding">
+            <img [src]="pointCategory.image_url" class="cat-card">
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="previous-order-conatiner">
+    <div class="ion-padding-horizontal ion-padding-top ion-text-left">
+      <h2 class="wel-msg">{{language === 'English' ? languageJson.homePage.english.categories :
+        languageJson.homePage.spanish.categories}}</h2>
+        <p class="wel-submsg">{{language === 'English' ? languageJson.homePage.english.catlist :
+          languageJson.homePage.spanish.catlist}}</p>
+     
+    </div>
+    <ion-grid class="p-8">
+      <ion-row class="ion-no-padding">
+        <ng-container *ngFor="let categorie of categories;let i=index">
+          <ng-container *ngIf="i>2">
+            <ion-col size="6" size-md="4" size-lg="3" size-xl="2" class="ion-padding item-of-category"
+              (click)="gotoPdtCategory(categorie)">
+              <img [src]="categorie.image_url" class="cat-card">
+            </ion-col>
+          </ng-container>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<ion-content [fullscreen]="true" [class.hidden]="!searchValue">
+  <div class="search-item-container" *ngIf="resultSearchProduct.length > 0">
+    <ion-card class="pdt-card search-item" #item *ngFor="let result of resultSearchProduct;let i=index" >
+      <div class="filter-container-item" #itemInfo (click)="goToProductDetails(result?.id)">
+        <p #itemInfoTitle>{{result.name}}</p>
+        <ion-button #itemInfoBtn class="ion-no-margin" fill="clear" color="secondary" >
+          <ion-icon #itemInfoIcon  name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <!-- <app-product-item [product]="result" [productIndex]="i"></app-product-item> -->
+    </ion-card>
+  </div>
+  <div *ngIf="resultSearchProduct.length == 0">
+    <div class="login-container ion-padding ion-text-center list-without-category">
+      <div class="ion-text-center ion-padding-vertical page-content">
+        <img src="../../assets/images/noproducts.png" width="100px">
+      </div>
+      <div class="ion-text-center ion-padding">
+        <h2 *ngIf="language=== 'Spanish'" class="wel-msg">Actualmente no posee productos con este nombre.</h2>
+        <h2  *ngIf="language=== 'English'"  class="wel-msg">You currently have no products with this name.</h2>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<div class="loader" *ngIf="loading"></div>

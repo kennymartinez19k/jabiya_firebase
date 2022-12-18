@@ -1,0 +1,86 @@
+[
+  {
+    "language": "English",
+    "values": {
+      "loginPage": {
+        "description": "Enter your email and password and press login to go into your account",
+        "email": "Email",
+        "password": "Password",
+        "resetPasswordText": "Forgot your password?",
+        "registerAccountText": "Don’t have an account?",
+        "registerAccountButtonText": "Register",
+        "loginButtonText": "Login",
+        "errorMessage": "Wrong password or username"
+      },
+      "signupPage": {
+        "locationPermissionText": "All permissions are used for specific functionality. Kindly Grant all Permissions to continue using Jabiya Application",
+        "locationPermissionButton": "Grant"
+      },
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "week": [
+        "SUN",
+        "MON",
+        "TUE",
+        "WED",
+        "THU",
+        "FRI",
+        "SAT"
+      ]
+    }
+  },
+  {
+    "language": "Spanish",
+    "values": {
+      "loginPage": {
+        "description": "Ingrese su correo electrónico y contraseña y presione iniciar sesión para ingresar a su cuenta",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "resetPasswordText": "¿Olvidaste tu contraseña?",
+        "registerAccountText": "¿No tienes una cuenta?",
+        "registerAccountButtonText": "Inscríbete",
+        "loginButtonText": "Entra a tu cuenta",
+        "errorMessage": "Contraseña o nombre de usuario incorrecto"
+      },
+      "signupPage": {
+        "locationPermissionText": "",
+        "locationPermissionButton": ""
+      },
+      "months": [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+      ],
+      "week": [
+        "DOM",
+        "LUN",
+        "MAR",
+        "MIE",
+        "JUE",
+        "VIE",
+        "SAB"
+      ]
+    }
+  }
+]

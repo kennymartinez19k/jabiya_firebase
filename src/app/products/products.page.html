@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="bar-header">
+      <div class="info-header">
+        <ion-buttons slot="start" auto-hide="false">
+          <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <p>{{userData?.company_name}}</p>
+      </div>
+      <div class="img-header">
+        <img src="../../../assets/images/logo.png" alt="">
+        <p class="mode-env">{{modeEnv}} {{version}}</p>
+
+      </div>
+    </div>
+    <div class="title-div">
+      <ion-searchbar showCancelButton="focus"
+        #mySearchbar
+        (click)="filterProduct('')" (ionClear)="onCancel($event)"
+        placeholder="Buscar"
+        (keyup)="filterProduct($event)" class="search-bar"></ion-searchbar>
+      <ion-buttons slot="end">
+        <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+      </ion-buttons>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [class.hidden]="searchValue">
+  <app-product-category [subCategories]="subCategories" *ngIf='subCategories.length ===0 && products.length>0' hidden>
+  </app-product-category>
+  <app-product-category [subCategories]="subCategories" *ngIf='subCategories.length ===0 && products.length===0'>
+  </app-product-category>
+  <app-product-category [subCategories]="subCategories" *ngIf='subCategories.length >0'></app-product-category>
+  <app-product-list [points]="points" [products]="products" *ngIf='products.length >0'></app-product-list>
+</ion-content>
+<ion-content [fullscreen]="true" [class.hidden]="!searchValue">
+  <div class="search-item-container" *ngIf="resultSearchProduct.length > 0">
+    <ion-card class="pdt-card search-item" *ngFor="let result of resultSearchProduct;let i=index">
+      <div class="filter-container-item">
+        <p>{{result.name}}</p>
+        <ion-button (click)="goToProductDetails(result?.id)" class="ion-no-margin" fill="clear" color="secondary" >
+          <ion-icon  name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <!-- <app-product-item [product]="result" [productIndex]="i"></app-product-item> -->
+    </ion-card>
+  </div>
+  <div *ngIf="resultSearchProduct.length == 0">
+    <div class="login-container ion-padding ion-text-center list-without-category">
+      <div class="ion-text-center ion-padding-vertical page-content">
+        <img src="../../assets/images/noproducts.png" width="100px">
+      </div>
+      <div class="ion-text-center ion-padding">
+        <h2 *ngIf="language=== 'Spanish'" class="wel-msg">Actualmente no posee productos con este nombre.</h2>
+        <h2  *ngIf="language=== 'English'"  class="wel-msg">You currently have no products with this name.</h2>
+      </div>
+    </div>
+  </div>
+</ion-content>

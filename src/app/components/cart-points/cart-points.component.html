@@ -1,0 +1,45 @@
+<ion-grid class="ion-padding-horizontal border-bottom ion-padding-bottom md hydrated">
+  <ion-row>
+    <ion-col size="8" class="ion-text-left">
+      <p color="tertiary" class="pdt-description ion-no-margin">Jabiya Pesos que obtienes con este pedido</p>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right">
+      <h3 color="success" class="ion-text-right green-text ion-no-margin">+ {{getPointDefinition().currentOrderPoints}}
+      </h3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="8" class="ion-text-left">
+      <p color="tertiary" class="pdt-description ion-no-margin">Jabiya Pesos actuales totales </p>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right">
+      <h3 color="success" class="ion-text-right ion-no-margin">{{point}}</h3>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="getPointDefinition().currentClientPoints < minPointsRequired">
+    <ion-col size="8" class="ion-text-left">
+      <p color="tertiary" class="pdt-description ion-no-margin text-gray">Debe tener al menos 250 Jabiya Pesos para poder usarlos
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="getPointDefinition().currentClientPoints >= minPointsRequired">
+    <ion-col size="8" class="ion-text-left">
+      <p color="tertiary" class="pdt-description ion-no-margin">Jabiya Pesos a canjear con este pedido:
+    </ion-col>
+    <ion-col size="4" class="ion-text-right">
+      <ion-item class="border">
+        <ion-input onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="test" class="point-input" [value]="getPoints()" type="number" min="0" [max]="getMaxPoints()"
+          (ionChange)="changePoint($event)"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="getPointDefinition().currentClientPoints >= minPointsRequired">
+    <ion-col size="8" class="ion-text-left">
+      <p color="tertiary" class="pdt-description ion-no-margin">Jabiya Pesos totales después de realizar este pedido</p>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right">
+      <h3 color="danger" class="ion-text-right danger-text ion-no-margin">{{ getPointDefinition().currentClientPoints -
+        getPoints()}}
+      </h3>
+    </ion-col>
+  </ion-row>
+</ion-grid>

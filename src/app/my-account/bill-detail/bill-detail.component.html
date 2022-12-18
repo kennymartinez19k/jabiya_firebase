@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{invoiceDetailRes?.invoice}}</ion-title>
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-padding border-bottom div-card">
+    <ion-row>
+      <ion-col size="12" class="ion-text-left">
+        <h2 class="pdt-name" color="primary">{{language ==='English'? languageJson.billDetails.english.paid :
+          languageJson.billDetails.spanish.paid}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin-bottom">
+      <ion-col size="12" class="ion-text-left" id="genInvoice">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language ==='English'?
+          languageJson.billDetails.english.geninvoice : languageJson.billDetails.spanish.geninvoice}} <span
+            class="bold text-capitalize">{{invoiceDetailRes?.invoice_date_to_show}} </span></p>
+      </ion-col>
+      <ion-col size="12" class="ion-text-left">
+        <ion-button class="round-btn" fill="outline" (click)="downloadPdf()" color="secondary" shape="round" size="small">
+          <ion-icon name="download-outline"></ion-icon> {{language ==='English'? languageJson.billDetails.english.export
+          : languageJson.billDetails.spanish.export}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid id="invoiceDownload" class="ion-no-padding">
+    <ion-row class="ion-padding border-bottom">
+      <ion-col size="6" class="ion-text-left">
+        <h3 color="primary" class="bold ion-no-margin">{{language ==='English'? languageJson.billDetails.english.Product
+          : languageJson.billDetails.spanish.Product}}</h3>
+      </ion-col>
+      <ion-col size="3" class="ion-text-left">
+        <h3 color="primary" class="bold ion-no-margin">{{language ==='English'? languageJson.billDetails.english.qty :
+          languageJson.billDetails.spanish.qty}}.</h3>
+      </ion-col>
+      <ion-col size="3" class="ion-text-right">
+        <h3 color="primary" class="bold ion-no-margin">Total</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding border-bottom bg-white" *ngFor="let invoice of invoiceLines">
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{invoice?.name}}</p>
+        <p color="tertiary" class="pdt-description ion-no-margin">{{round(invoice?.price_unit)}}</p>
+      </ion-col>
+      <ion-col size="2" class="ion-text-left">
+        <p color="tertiary" class="pdt-description col-bottom ion-no-margin">{{invoice?.quantity}}</p>
+      </ion-col>
+      <ion-col size="4" class="ion-text-right">
+        <h3 color="dark" class="col-bottom ion-no-margin">{{round(invoice?.price_total)}}</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="bold pdt-description ion-no-margin">Subtotal</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="primary" class="bold ion-text-right ion-no-margin">{{round(invoiceDetailRes?.amount_untaxed)}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="bold pdt-description ion-no-margin">{{language ==='English'?
+          languageJson.billDetails.english.tax : languageJson.billDetails.spanish.tax}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="primary" class="bold ion-text-right ion-no-margin">{{round(invoiceDetailRes?.amount_tax)}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding border-bottom bg-white">
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="bold pdt-description ion-no-margin">Total</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="primary" class="bold ion-text-right ion-no-margin">{{round(invoiceDetailRes?.amount_total)}}</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

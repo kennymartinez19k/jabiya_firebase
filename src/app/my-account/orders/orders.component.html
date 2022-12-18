@@ -1,0 +1,81 @@
+
+<ion-grid class="border-bottom">
+ 
+  <ion-row class="ion-no-padding">
+    <ion-col size="12" class="ion-text-left ion-no-padding">
+      <app-calendar (passDate)="getValueForDate($event)" [datePeriods]="weekDays"></app-calendar>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<div class="reload-div">
+    <label for="" (click)="setReload()">
+      Refrescar
+      <ion-icon name="refresh-outline" (click)="setReload()" class="reload-icon" [class.reload]="reload"></ion-icon>
+    </label>
+</div>
+
+<div *ngIf="orders.length === 0 && futureOrders.length === 0">
+  <h1 color="primary" class="fs-42 ion-text-center bold"><ion-icon color="primary" name="alert-circle-outline"></ion-icon></h1>
+  <h2 class="pdt-name" color="primary" class="ion-text-center bold">{{language === 'English' ? languageJson.orderPage.english.noorder : languageJson.orderPage.spanish.noorder}}.</h2>
+</div>
+<div *ngIf="orders.length > 0">
+  <ion-row class="ion-padding-horizontal">
+    <ion-col size="12" class="ion-text-left">
+      <h2 class="pdt-name" color="primary">{{language === 'English' ? languageJson.orderPage.english.todaydel : languageJson.orderPage.spanish.todaydel}}</h2>
+    </ion-col>
+  </ion-row>
+  <ion-grid class="ion-padding border-bottom div-card">
+    <ion-row class="border-bottom ion-padding" *ngFor="let order of orders" (click)="gotoOrderDetail(order)">
+      <ion-col size="8" class="ion-text-left">
+        <p color="tertiary" class=" ion-no-margin">{{language === 'English' ? languageJson.orderPage.english.orderno : languageJson.orderPage.spanish.orderno}}: <span class="bold">{{order.name}}</span>
+        </p>
+        <p color="tertiary" class=" ion-no-margin">{{language === 'English' ? languageJson.orderPage.english.orderon : languageJson.orderPage.spanish.orderon}}: <span class="bold">
+            {{order.create_date_to_show}}</span>
+        </p>
+      <h3 color="tertiary" class="ion-no-margin">{{language === 'English' ? languageJson.orderPage.english.status : languageJson.orderPage.spanish.status}}: <span class="bold">{{order.picking_status.text}}</span> </h3>
+        <!-- <h3 color="secondary" class="bold price">{{round(order.amount_total)}}</h3> -->
+      </ion-col>
+      <ion-col size="4" class="ion-text-left">
+        <ion-button class="ion-no-margin" fill="clear" color="secondary" (click)="gotoOrderDetail(order)">{{language === 'English' ? languageJson.orderPage.english.seedetail : languageJson.orderPage.spanish.seedetail}}
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+</div>
+<ion-list *ngIf="futureOrders.length > 0" class="container-orders">
+  <ion-list-header class="title-orders">
+    <ion-label>
+      <h2 class="pdt-name" color="primary">{{language === 'English' ? languageJson.orderPage.english.all : languageJson.orderPage.spanish.all}} <br> {{date?.fromDate}} - {{date?.toDate}}</h2>
+      <p class="wel-submsg  text-danger">{{language === 'English' ? languageJson.orderPage.english.recentorderwait : languageJson.orderPage.spanish.recentorderwait}}</p>
+      <p class="wel-submsg">{{language === 'English' ? languageJson.orderPage.english.recent : languageJson.orderPage.spanish.recent}}</p>
+    </ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let order of futureOrders" class="orders" (click)="gotoOrderDetail(order)">
+    <div 
+      class="date-icon" 
+      [class.processing]="order.picking_status.code == 'PROCCESSED'"
+      [class.pending]="order.picking_status.code == 'RECEIVED'"
+      [class.enRoute]="order.picking_status.code == 'SENT'"
+      [class.delivered]="order.picking_status.code == 'DELIVERED'"
+      [class.cancelled]="order.picking_status.code == 'CANCELLED'"
+      ion-avatar
+    >
+      <ion-icon name="calendar-outline"></ion-icon>
+    </div>
+    <ion-label >
+      <ion-text color="black" class="bold ion-no-margin">{{language === 'English' ? languageJson.orderPage.english.exdelivery : languageJson.orderPage.spanish.exdelivery}} {{order.delivery_date_to_show}}</ion-text>
+      <!-- <h2 color="tertiary" class="bold ion-no-margin"></h2> -->
+      <h3 color="tertiary" class="ion-no-margin">{{language === 'English' ? languageJson.orderPage.english.invoice : languageJson.orderPage.spanish.invoice}} <span class="bold">{{order.name}}</span></h3>
+      <h3 color="tertiary" class="ion-no-margin">{{language === 'English' ? languageJson.orderPage.english.status : languageJson.orderPage.spanish.status}}: <span class="bold">{{order.picking_status.text}}</span> </h3>
+      <h3 color="tertiary" class="ion-no-margin">{{language === 'English' ? languageJson.orderPage.english.orderdate : languageJson.orderPage.spanish.orderdate}} <span class="bold">{{order.create_date_to_show}} </span> </h3>
+      <!-- <h3 color="dark" class="ion-no-margin">Total <span class="bold">
+          {{round(order.amount_total)}}</span></h3> -->
+    </ion-label>
+    <ion-button class="ion-no-margin" fill="clear" [color]="order.has_invoice ? 'secondary' : 'black'" (click)="gotoOrderDetail(order)">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-list>
+

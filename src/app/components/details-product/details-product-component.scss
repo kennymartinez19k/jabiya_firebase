@@ -1,0 +1,38 @@
+.bar-header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .img-header{
+    width: 20%;
+    max-width: 80px;
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+    position: relative;
+
+  }
+  .img-header img{
+    margin-bottom: 5px
+  }
+  .info-header{
+    display: flex;
+  }
+  .info-header p{
+    color: green;
+    margin-left:5px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  .mode-env{
+    color: green;
+    margin: 0px;
+    bottom: 3px;
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 10px;
+  }

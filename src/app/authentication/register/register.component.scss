@@ -1,0 +1,140 @@
+ion-header::after {
+  background-image: none;
+}
+.register-container {
+  margin-top: -20px;
+  display: block;
+  text-align: center;
+}
+.input-icon {
+  font-size: 20px;
+  margin-top: 30px;
+}
+.phone-code {
+  position: absolute;
+  margin-top: -31px;
+  margin-left: 14px;
+  z-index: 1;
+  font-size: 16px;
+}
+.btn{
+  width: 100%;
+}
+.phone-field {
+  margin-left: 20px;
+}
+@media (min-width: 600px){
+  .container-field{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .container-field .item{
+    width: 49%;
+  }
+  .container-field .item ion-item{
+    width: 100%;
+  }
+  .btn{
+    display: flex;
+    justify-content: end;
+  }
+
+}
+
+ion-alert label[class="sc-ion-label-md-h"]{
+  // your style.
+  font-size: 10px !important;
+  color: red !important
+}
+
+ion-alert.select-alert{
+  .sc-ion-alert-md {
+    color: white;
+}
+}
+.opt-title{
+  font-size: 10px !important;
+}
+.optionList{
+  position:absolute;
+  width:100%;
+  z-index:100;
+ /* height:200px;*/
+}
+.sector{
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 5px 17px;
+  margin: 10px 0px;
+  position: relative;
+}
+.sector div p{
+  margin: 0px;
+  color: #505050a8
+}
+.sector div span{
+  font-size: 12px;
+  margin-bottom: 2px;
+  display: block;
+  color: #0000004f;
+}
+
+.hidden{
+  display: none !important;
+}
+.sector .list{
+  display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 90%;
+    top: -230px;
+    box-shadow: 0px 2px 5px #7c7c7c;
+    z-index: 1;
+    border-radius: 9px;
+    padding: 10px;
+    max-height: 250px;
+    overflow: scroll;
+}
+.sector .list input{
+  border: 1px solid #00000026;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sector button{
+  background-color: #fff;
+  border-bottom: 1px solid #56565633;
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sector button img{
+  width: 20px;
+}
+.disabled{
+  pointer-events: none;
+}
+.disabled div p{
+  color: #0003;
+}
+.active{
+  color: #000 !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.search-sectors{
+  background-color: #fff;
+}
+.title-search{
+  color: #000;
+}
+.alertButton{
+  background-color: green;
+  color: white;
+}

@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-button fill="clear" color="primary" size="large" class="f-20" routerLink="../accounts"><ion-icon name="close-outline" slot="end"></ion-icon></ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="editAccountForm">
+    <div class="register-container ion-padding ion-text-left">
+      <h2 class="wel-msg ion-margin">{{language ==='English'? languageJson.editPage.english.profile
+        :languageJson.editPage.spanish.profile}}</h2>
+        <h2 class="wel-submsg-sub ion-padding-horizontal">{{language === 'English' ? languageJson.editPage.english.edittitle : languageJson.editPage.spanish.edittitle}}</h2>
+      <div class="ion-margin-vertical ion-padding-bottom list-items">
+        <ion-item class="item">
+          <ion-label position="stacked">{{language ==='English'? languageJson.editPage.english.fname
+            :languageJson.editPage.spanish.fname}}</ion-label>
+          <ion-input required placeholder="" type="text" formControlName="firstname"></ion-input>
+          <ion-icon name="person-outline" slot="end" class="input-icon"></ion-icon>
+        </ion-item>
+        <!-- <ion-text color="danger" class="error-msg">
+        Primer Nombre is required.
+      </ion-text> -->
+        <ion-item class="item">
+          <ion-label position="stacked">{{language ==='English'? languageJson.editPage.english.lname
+            :languageJson.editPage.spanish.lname}}</ion-label>
+          <ion-input placeholder="" type="text" formControlName="lastname"></ion-input>
+          <ion-icon name="person-outline" slot="end" class="input-icon"></ion-icon>
+        </ion-item>
+        <div class="item ">
+          <ion-item class="item">
+            <ion-label position="stacked">{{language ==='English'? languageJson.editPage.english.rncStore
+              :languageJson.editPage.spanish.rncStore}}</ion-label>
+            <ion-input placeholder="" type="text" formControlName="document_number"></ion-input>
+            <ion-icon name="person-outline" slot="end" class="input-icon"></ion-icon>
+          </ion-item>
+        </div>
+        <div class="item">
+          <ion-item>
+            <ion-label position="stacked">{{selectedLang === 'English' ? languageJson.editPage.english.direction : languageJson.editPage.spanish.direction}}</ion-label>
+            <ion-input placeholder="{{selectedLang === 'English' ? languageJson.editPage.english.directionLine1 : languageJson.editPage.spanish.directionLine1}}" type="text" formControlName="address_line_1"></ion-input>
+            <ion-icon name="location-outline" slot="end" class="input-icon"></ion-icon>
+          </ion-item>
+        </div>
+        <div class="item ">
+          <ion-item>
+            <ion-label position="stacked">{{selectedLang === 'English' ? languageJson.editPage.english.province :
+              languageJson.editPage.spanish.province}}</ion-label>
+            <ion-select class="my-custom-interface" interface="popover"
+              placeholder="{{selectedLang === 'English' ? languageJson.editPage.english.selprovince : languageJson.editPage.spanish.selprovince}}"
+              (ionChange)="stateSelected($event)" formControlName="state">
+              <ion-select-option *ngFor="let state of states" [value]="state.id"> <span
+                  class="opt-title">{{state.name}}</span></ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.state.errors?.required">
+            {{selectedLang === 'English' ? languageJson.editPage.english.provincereq :
+            languageJson.editPage.spanish.provincereq}}.
+          </ion-text>
+        </div>
+        <div class="item">
+          <ion-item>
+            <ion-label position="stacked">{{selectedLang === 'English' ? languageJson.editPage.english.town :
+              languageJson.editPage.spanish.town}}</ion-label>
+            <ion-select interface="popover"
+              placeholder="{{selectedLang === 'English' ? languageJson.editPage.english.selcity : languageJson.editPage.spanish.selcity}}"
+              (ionChange)="citySelected($event)" formControlName="city">
+              <!-- <ion-select interface="popover" placeholder="{{selectedLang === 'English' ? languageJson.editPage.english.selcity : languageJson.editPage.spanish.selcity}}" (ionChange)="citySelected($event)" formControlName="city" [disabled]="errorControl.state.value === ''"> -->
+              <ion-select-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.city.errors?.required">
+            {{selectedLang === 'English' ? languageJson.editPage.english.townreq :
+            languageJson.editPage.spanish.townreq}}.
+          </ion-text>
+        </div>
+        <div class="item">
+          <ion-item>
+            <ion-label position="stacked">Sector</ion-label>
+            <!-- <ion-select interface="popover" placeholder="{{selectedLang === 'English' ? languageJson.editPage.english.selsector : languageJson.editPage.spanish.selsector}}" formControlName="sector_id" [disabled]="errorControl.city.value === ''"> -->
+            <ion-select interface="popover"
+              placeholder="{{selectedLang === 'English' ? languageJson.editPage.english.selsector : languageJson.editPage.spanish.selsector}}"
+              formControlName="sector_id">
+              <ion-select-option *ngFor="let sector of sectors" [value]="sector.id">{{sector.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.sector_id.errors?.required">
+            Sector is required.
+          </ion-text>
+        </div>
+        <div class="item">
+          <ion-item class="item">
+            <ion-label position="stacked">{{language ==='English'? languageJson.editPage.english.owner
+              :languageJson.editPage.spanish.owner}}</ion-label>
+            <ion-input placeholder="" type="text" formControlName="owner_name"></ion-input>
+            <ion-icon name="person-outline" slot="end" class="input-icon"></ion-icon>
+          </ion-item>
+        </div>
+
+        <!-- <ion-text color="danger" class="error-msg">
+        Apellido is required.
+      </ion-text> -->
+        <!-- <div class="register-container ion-padding-horizontal ion-text-left">
+      <p class="wel-submsg">{{language === 'English' ? languageJson.editPage.english.details : languageJson.editPage.spanish.details}}</p>
+      </div> -->
+
+        <div class="item ion-margin-top">
+          <h2 class="wel-submsg-sub ion-padding-horizontal">{{language === 'English' ? languageJson.editPage.english.nonedittitle : languageJson.editPage.spanish.nonedittitle}}</h2>
+          <p class="wel-submsg ion-padding-horizontal">{{language === 'English' ? languageJson.editPage.english.details
+            : languageJson.editPage.spanish.details}}</p>
+          <ion-item class="item">
+
+            <ion-label position="stacked">{{language ==='English'? languageJson.editPage.english.email
+              :languageJson.editPage.spanish.email}}</ion-label>
+            <ion-input placeholder="example@gmail.com" formControlName="email" type="email" disabled></ion-input>
+            <ion-icon name="mail-outline" slot="end" class="input-icon"></ion-icon>
+          </ion-item>
+        </div>
+        <!-- <ion-text color="danger" class="error-msg">
+        Correo Electrónico is Invalid.
+      </ion-text> -->
+        <div class="item">
+          <!-- <ion-label slot="start" class="phone-code">+1</ion-label> -->
+          <ion-item class="phoneno">
+            <ion-label position="stacked">{{language ==='English'? languageJson.editPage.english.phone
+              :languageJson.editPage.spanish.phone}}</ion-label>
+            <ion-input placeholder="" type="tel" formControlName="phone" class="phoneno" disabled></ion-input>
+            <ion-icon name="phone-portrait-outline" slot="end" class="input-icon"></ion-icon>
+          </ion-item>
+        </div>
+
+        <!-- <ion-text color="danger" class="error-msg">
+        Teléfono is Invalid.
+      </ion-text> -->
+
+        <div class="ion-margin-vertical ion-padding-vertical container-btn">
+          <ion-button class="ion-margin-vertical btn" size="default" color="primary" expand="block"
+            (click)="sendEditAccountDetails()">{{language ==='English'? languageJson.editPage.english.update
+            :languageJson.editPage.spanish.update}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ion-content>
+<div class="loader" *ngIf="loading"></div>

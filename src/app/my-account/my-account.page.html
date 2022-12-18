@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="../home" color="dark" fill="clear">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{language ==='English' ? languageJson.accountPage.english.acc : languageJson.accountPage.spanish.acc}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="cuenta" class="segment" [(ngModel)]="segment" (ionChange)="segmentChanged($event)"
+      color="secondary">
+     
+      <ion-segment-button value="pedidos">
+        {{language ==='English' ? languageJson.accountPage.english.request : languageJson.accountPage.spanish.request}}
+      </ion-segment-button>
+      <ion-segment-button value="facturas">
+        {{language ==='English' ? languageJson.accountPage.english.invoice : languageJson.accountPage.spanish.invoice}}
+      </ion-segment-button>
+      <ion-segment-button value="cuenta">
+        {{language ==='English' ? languageJson.accountPage.english.bill : languageJson.accountPage.spanish.bill}}
+      </ion-segment-button>
+      <ion-segment-button disabled="true" value="creditos">
+        {{language ==='English' ? languageJson.accountPage.english.credit : languageJson.accountPage.spanish.credit}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div [ngSwitch]="segment">
+    <app-orders  *ngSwitchCase="'pedidos'">
+    </app-orders>
+    <app-bills *ngSwitchCase="'facturas'">
+    </app-bills>
+    <app-accounts *ngSwitchCase="'cuenta'" class="accounts-items">
+    </app-accounts>
+    
+    <app-credits *ngSwitchCase="'creditos'">
+    </app-credits>
+    
+  </div>
+</ion-content>
+
+<!-- 
+
+<div [class.shadow]="sessionExpired"></div>
+<div class="modal-container" *ngIf="sessionExpired">
+  <div class="modal_c">
+    <h1 class="title">Su sesión Ha Expirado!</h1>
+    <p class="text">Se ha perdido la sesión, por favor presione el boton "Cerrar sesión" y vuelva a iniciar para ver sus pedidos</p>
+    <div class="buttons">
+      <button class="btn" (click)="logOut()">Cerrar sesión</button>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{language === 'English'? languageJson.addaccPage.english.account :languageJson.addaccPage.spanish.account}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding-horizontal" [formGroup]="signupForm">
+  <div class="register-container ion-padding-horizontal ion-text-left">
+    <p class="wel-submsg">{{language === 'English'? languageJson.addaccPage.english.details :languageJson.addaccPage.spanish.details}}</p>
+    <div class="ion-margin-vertical ion-padding-bottom container-fields">
+      <!-- <ion-item>
+        <ion-label position="stacked">{{language === 'English'? languageJson.addaccPage.english.code :languageJson.addaccPage.spanish.code}}</ion-label>
+        <ion-input formControlName="company_code" placeholder="Ex.xxxxxxx" type="text"></ion-input>
+
+      </ion-item> -->
+      <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.company_code.errors?.required">
+        {{language === 'English'? languageJson.addaccPage.english.codereq :languageJson.addaccPage.spanish.codereq}}.
+      </ion-text>
+      <ion-item>
+        <ion-label position="stacked">{{language === 'English'? languageJson.addaccPage.english.storename :languageJson.addaccPage.spanish.storename}}</ion-label>
+        <ion-input formControlName="company_name" placeholder="Ex.xxxxxxx" type="text"></ion-input>
+        <ion-icon name="business-outline" slot="end" class="input-icon"></ion-icon>
+      </ion-item>
+      <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.company_code.errors?.required">
+        {{language === 'English'? languageJson.addaccPage.english.storereq :languageJson.addaccPage.spanish.storereq}}.
+      </ion-text>
+      <ion-item>
+        <ion-label position="stacked">{{language === 'English'? languageJson.addaccPage.english.direction :languageJson.addaccPage.spanish.direction}}</ion-label>
+        <ion-input formControlName="address_line_1" placeholder="{{language === 'English'? languageJson.addaccPage.english.directionLine1 :languageJson.addaccPage.spanish.directionLine1}}" type="text"></ion-input>
+        <ion-icon name="location-outline" slot="end" class="input-icon"></ion-icon>
+      </ion-item>
+      <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.address_line_1.value === '' && errorControl.address_line_2.value === ''">
+        {{language === 'English'? languageJson.addaccPage.english.dirreq :languageJson.addaccPage.spanish.dirreq}}.
+      </ion-text>
+    <ion-item>
+      <ion-label position="stacked">{{language === 'English'? languageJson.addaccPage.english.province :languageJson.addaccPage.spanish.province}}</ion-label>
+      <ion-select interface="popover" placeholder="{{language === 'English' ? languageJson.addaccPage.english.selprovince : languageJson.addaccPage.spanish.selprovince}}" (ionChange)="stateSelected($event.target.value)" formControlName="state">
+        <ion-select-option *ngFor="let state of states" [value]="state.id">{{state.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.state.errors?.required">
+      {{language === 'English'? languageJson.addaccPage.english.proreq :languageJson.addaccPage.spanish.proreq}}.
+    </ion-text>
+    <ion-item>
+      <ion-label position="stacked">{{language === 'English'? languageJson.addaccPage.english.town :languageJson.addaccPage.spanish.town}}</ion-label>
+        <ion-select interface="popover" placeholder="{{language === 'English' ? languageJson.addaccPage.english.selcity : languageJson.addaccPage.spanish.selcity}}" (ionChange)="citySelected($event.target.value)" formControlName="city" [disabled]="errorControl.state.value === ''">
+        <ion-select-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.city.errors?.required">
+      {{language === 'English'? languageJson.addaccPage.english.townreq :languageJson.addaccPage.spanish.townreq}}.
+    </ion-text>
+    <ion-item>
+      <ion-label position="stacked">Sector</ion-label>
+      <ion-select interface="popover" placeholder="{{language === 'English' ? languageJson.addaccPage.english.selsector : languageJson.addaccPage.spanish.selsector}}" formControlName="sector_id" [disabled]="errorControl.city.value === ''">
+        <ion-select-option *ngFor="let sector of sectors" [value]="sector.id">{{sector.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.sector_id.errors?.required">
+      Sector is required.
+    </ion-text>
+    <div class="item ">
+      <ion-item>
+        <ion-label position="stacked">{{selectedLang === 'English' ? languageJson.addaccPage.english.salesPerson : languageJson.addaccPage.spanish.salesPerson}}</ion-label>
+        <ion-select class="my-custom-interface" interface="popover" placeholder="{{selectedLang === 'English' ? languageJson.addaccPage.english.salesPerson : languageJson.addaccPage.spanish.salesPerson}}" formControlName="salesperson">
+          <ion-select-option  *ngFor="let salesPerson of salespersons" [value]="salesPerson.id"> <span class="opt-title">{{salesPerson.name}} {{salesPerson.phone}}</span></ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.state.errors?.required">
+        {{selectedLang === 'English' ? languageJson.addaccPage.english.salesPersonreq : languageJson.addaccPage.spanish.salesPersonreq}}.
+      </ion-text>
+    </div>
+    <!-- <ion-item>
+      <ion-label position="stacked">{{language === 'English'? languageJson.addaccPage.english.seller :languageJson.addaccPage.spanish.seller}}</ion-label>
+      <ion-input placeholder="Ex.xxxxxxx" formControlName="salesperson" type="text"></ion-input>
+      <ion-icon name="person-outline" slot="end" class="input-icon"></ion-icon>
+    </ion-item> -->
+    <!-- <ion-text color="danger" class="error-msg">
+    Vendedor is required.
+  </ion-text> -->
+  <!-- <ion-item>
+    <ion-label position="stacked">{{language === 'English'? languageJson.addaccPage.english.storetype :languageJson.addaccPage.spanish.storetype}}</ion-label>
+    <ion-select interface="popover" placeholder="{{language === 'English' ? languageJson.addaccPage.english.selstore : languageJson.addaccPage.spanish.selstore}}" formControlName="type_client_id">
+      <ion-select-option *ngFor="let clientType of clientTypes" [value]="clientType.id">{{clientType.name}}</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+  <ion-text color="danger" class="error-msg" *ngIf="isSubmitted && errorControl.type_client_id.errors?.required">
+    {{language === 'English'? languageJson.addaccPage.english.typereq :languageJson.addaccPage.spanish.typereq}}.
+  </ion-text>
+    </div>
+    <div class="btn-container">
+      <ion-button class="ion-margin-vertical" size="default" color="primary" (click)="submit()" expand="block">{{language === 'English'? languageJson.addaccPage.english.add :languageJson.addaccPage.spanish.add}}
+      </ion-button>
+      <ion-button class="ion-margin-vertical" size="default" color="primary" fill="outline" expand="block" routerLink="/settings">{{language === 'English'? languageJson.addaccPage.english.cancel :languageJson.addaccPage.spanish.cancel}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

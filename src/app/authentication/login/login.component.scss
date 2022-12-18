@@ -1,0 +1,45 @@
+ion-header::after {
+  background-image: none;
+}
+.alo{
+  background: "#000" !important;
+}
+.input-icon {
+  font-size: 20px;
+  margin-top: 30px;
+}
+.forgot-password {
+  position: relative;
+  top: 0px;
+  right: -8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.remember-me {
+  --padding-start: 0px;
+  margin-left: -16px;
+  margin-top: -10px;
+  --min-height: 40px;
+  --inner-border-width: 0 0 0px 0;
+  font-size: 14px;
+}
+ion-checkbox {
+  margin: 0px 8px 0px 8px;
+}
+ion-label {
+  font-size: 14px;
+}
+.logo-img {
+  width: 150px;
+  margin-top: 100px;
+}
+.login-fields{
+  min-width: 250px;
+  max-width: 600px;
+  margin: 0px auto;
+}
+.login-btn{
+  min-width: 250px;
+  max-width: 400px;
+  margin: 10px auto;
+}

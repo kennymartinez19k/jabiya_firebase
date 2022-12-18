@@ -1,0 +1,7 @@
+{
+  "name": "Bivipin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

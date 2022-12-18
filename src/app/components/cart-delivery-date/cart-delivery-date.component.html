@@ -1,0 +1,28 @@
+<div >
+  <ion-radio-group value="option2"  formControlName="deliveryDate">
+    <ion-list-header>
+      <h2><span class="pdt-name">Seleccione Fecha de Entrega: <br></span><ion-text color="primary">
+          (Nota: Solo entregamos dias laborables)
+        </ion-text>
+      </h2>
+    </ion-list-header>
+    <!-- <ion-item *ngIf="isLessMiddleDay">
+      <ion-label>
+        <p color="tertiary" class="pdt-description ion-no-margin"><b>Hoy ({{currentDate?.message}})</b></p>
+      </ion-label>
+      <ion-radio (click)="changeDate(currentDate)" slot="start" color="primary" value="option1"></ion-radio>
+    </ion-item> -->
+    <ion-item>
+      <ion-label>
+        <p color="tertiary" class="pdt-description ion-no-margin"><b>Mañana ({{tomorrowDate?.message}}) </b></p>
+      </ion-label>
+      <ion-radio (click)="changeDate(tomorrowDate)" slot="start" color="primary" value="option2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p color="tertiary" class="pdt-description ion-no-margin"><b>Pasado Mañana ({{pastTomorrowDate?.message}}) </b></p>
+      </ion-label>
+      <ion-radio (click)="changeDate(pastTomorrowDate)" slot="start" color="primary" value="option3"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+</div>

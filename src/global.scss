@@ -1,0 +1,417 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+ion-button {
+  --border-radius: 0px;
+  text-transform: capitalize;
+  height: 3.2em;
+}
+ion-button.round-btn {
+  --border-radius: 20px !important;
+}
+
+ion-select-popover ion-item ion-label {
+  font-size: 12px !important;
+}
+
+
+.alert-radio-label.sc-ion-alert-md,
+.alert-radio-label.sc-ion-alert-ios {
+   font-size: 10px !important;
+   color: #39b03e;
+}
+.alert-tappable.alert-radio {
+   height: auto;
+   contain: content;
+}
+// login
+.login-container {
+  margin: 0;
+  display: block;
+  text-align: center;
+}
+.logo {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 180px;
+  }
+}
+.wel-msg {
+  font-size: 20px;
+  color: #29292b;
+  margin-bottom: -8px;
+  font-weight: 600;
+}
+.wel-submsg {
+  font-size: 12px;
+  color: #a8a8a8;
+}
+.wel-submsg-sub {
+  font-size: 12px;
+  color: #a8a8a8;
+}
+.footer-btn-grp {
+  position: absolute;
+  bottom: 30px;
+  width: 92%;
+}
+.phoneno .item-label-stacked .sc-ion-input-md-h,
+.phoneno .native-input.sc-ion-input-md {
+  padding-inline-start: 30px !important;
+}
+ion-text.error-msg {
+  font-size: 13px;
+  text-align: left;
+  display: block;
+  margin-left: 16px;
+}
+.page-content {
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+.bold {
+  font-weight: 600;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.pos-rel {
+  position: relative;
+}
+.language-btn .lang-select .select-icon {
+  width: 24px;
+  padding-left: 10px;
+  height: 24px;
+  color: #84ca08 !important;
+  opacity: 1;
+}
+.language-btn {
+  font-size: 12px;
+  /* height: 44px; */
+  margin-right: 12px;
+  /* --border-radius: 30px; */
+  border: 2px solid #84ca08;
+  border-radius: 30px;
+  --min-height: 30px !important;
+}
+.environ-btn {
+  font-size: 12px;
+  /* height: 44px; */
+  margin-right: 12px;
+  /* --border-radius: 30px; */
+  border: 2px solid #84ca08;
+  border-radius: 30px;
+  --min-height: 30px !important;
+}
+.primary-solid-btn {
+  background-color: #39b03e !important;
+  color: #ffffff !important;
+  padding: 10px 20px !important;
+  margin-bottom: 10px !important;
+  border-radius: 4px;
+}
+.danger-solid-btn {
+  background-color: #eb445a !important;
+  color: #ffffff !important;
+  padding: 10px 20px !important;
+  margin-bottom: 10px !important;
+  border-radius: 4px !important;
+}
+.error-toaster-msg {
+  background-color: #eb445a !important;
+  color: #ffffff !important;
+}
+.lang-select {
+  background: white;
+  color: black;
+  margin-left: 0px;
+  background-repeat: no-repeat;
+  width: 100%;
+  background-position: 2% 50%;
+  /* height: 20px; */
+  padding: 0px 6px 0px 26px;
+}
+.environ-select {
+  background: white;
+  color: black;
+  margin-left: 0px;
+  background-repeat: no-repeat;
+  width: 100%;
+  background-position: 2% 50%;
+  /* height: 20px; */
+  padding: 0px 6px 0px 6px;
+}
+.lang-btn {
+  height: 30px;
+  font-size: 12px;
+  margin-right: 12px;
+  --border-radius: 30px;
+}
+.lang-popover-css .popover-content {
+  top: 52px !important;
+  right: 12px !important;
+  left: unset !important;
+}
+.redeem-alert {
+  --min-width: 326px;
+}
+.size-8 {
+  min-width: 200px;
+}
+.border {
+  max-height: 30px;
+  --min-height:auto;
+  --padding-start: 8px;
+  --inner-padding-end: 8px;
+  --inner-border-width: 0 0 0px 0;
+  border: 1px solid #bababa;
+}
+.view-btn {
+  position: absolute;
+  right: 0px;
+  margin-top: -68px;
+  font-size: 16px;
+}
+.add-btn {
+  --padding-start: 0px;
+  --padding-end: 8px;
+  height: 28px;
+  font-weight: 600;
+  width: 28px;
+}
+.cart-btn {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  height: 36px;
+  --border-radius: 6px;
+  width: 92%;
+}
+.pdt-slider {
+  width: 276px;
+}
+.previous-order-conatiner .pdt-card {
+  width: 260px;
+}
+.previous-order-conatiner .cart-btn {
+  width: auto;
+}
+.pdt-card {
+  border-radius: 4px;
+  box-shadow: none;
+  // box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+  //   rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+}
+.pdt-quantity {
+  display: flex;
+  position: absolute;
+  bottom: 12px;
+}
+.pdt-name {
+  font-weight: 600 !important;
+  white-space: pre-wrap;
+}
+.pdt-description {
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+.pdt-price {
+  font-weight: 600 !important;
+  margin: 0px 0px 4px 0px!important;
+}
+.m-8 {
+  margin: 8px;
+}
+.mx-8 {
+  margin: 0px 8px;
+}
+.categories-conatiner {
+  background-color: white;
+}
+.card-caption {
+  background-color: rgb(250 208 44 / 90%);
+  padding: 16px;
+  position: absolute;
+  bottom: -2px;
+  border-radius: 0px 0px 6px 6px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: black;
+}
+.cat-card {
+  // background-color: #84ca08;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  width: 200px;
+}
+.loader {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  background-image: url("./assets/images/loading.gif");
+  background-size: 340px;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10000000;
+  opacity: 0.7;
+  filter: alpha(opacity=40);
+}
+.alert-button.sc-ion-alert-md {
+  font-weight: 600;
+  background-color: #3ab03f;
+  color: white;
+  border-radius: 5px;
+}
+ion-searchbar ion-icon {
+  right: 16px !important;
+  left: auto !important;
+  color: #39b03e;
+}
+.searchbar-search-icon.sc-ion-searchbar-md {
+  top: 5px;
+  color: #39b03e;
+}
+.mr-1 {
+  margin-right: 0.5rem;
+}
+.searchbar-cancel-button.sc-ion-searchbar-md {
+  display: none !important;
+}
+.searchbar-input.sc-ion-searchbar-md {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  box-shadow: none;
+  border: 1px solid #39b03e;
+  border-radius: 20px;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets {
+  bottom: -4px !important;
+  left: 0;
+  width: 100%;
+}
+
+
+@media (min-height: 720px) and (max-height: 880px) {
+  .page-content {
+    margin-top: 16%;
+    margin-bottom: 16%;
+  }
+  .mt-30 {
+    margin-top: 30px;
+  }
+}
+@media (min-width: 900px){
+
+  .alert-wrapper{
+    max-width: 500px !important;
+    width: 50% !important;
+  }
+  
+  .alert-wrapper .alert-radio-group button{
+  }
+}
+@media (min-width: 900px){
+  .redeem-alert {
+    --min-width: 450px;
+  }
+}
+.image-height img{
+  max-height: 80px !important;
+}
+
+.img-cached{
+  // transition: transform .2s;
+  transition-duration: .2s;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+}
+.img-cached .container{
+  width: 70%;
+  max-height: 500px;
+}
+.img-cached img{
+  max-width: 300px;
+  margin: 0px auto;
+  width: 100%;
+}
+.btnDisabled{
+  pointer-events: none;
+  color: #8d8d8d;
+  border: 1px solid #a6a6a6;
+  border-radius: 5px;
+  border: 0px;
+}
+.cancelDisabled{
+}
+.ion-menu-button{
+  margin-right: 5px !important;
+}
+.ion-back-button{
+  margin-right: 5px !important;
+}
+.product .soldOut{
+  position: absolute;
+  top: -5px;
+  z-index: 1;
+  background: #ffffff63;
+}
+
+.product-item .soldOut{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: -5px;
+  z-index: 1;
+  background: #ffffff63;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #0c63e4;
+  background-color: #f0ffe7;
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+.edit-value input{
+  padding: 0px 1px;
+  text-align: center;
+  
+}
+p{
+  margin: 10px 0px !important;
+}

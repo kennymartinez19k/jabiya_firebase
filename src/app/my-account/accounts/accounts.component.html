@@ -1,0 +1,143 @@
+<div class="div-card">
+    <ion-row class="ion-padding add-account">
+      <ion-col size="10" (click)="gotoAddAccount()">
+        <h2 class="pdt-name" color="primary"> {{language === 'English'? languageJson.accountPage.english.connect :languageJson.accountPage.spanish.connect}}</h2>
+      </ion-col>
+      <ion-col size="2" class="ion-text-left">
+        <ion-button class="ion-no-margin" class="icon-plus" fill="clear" color="secondary" (click)="gotoAddAccount()">
+          <ion-icon name="add-outline" ></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+</div>
+<div class="div-card">
+  
+  <ion-grid class="ion-padding ">
+    
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <h2 class="pdt-name" color="primary">{{language === 'English' ? languageJson.accountPage.english.details : languageJson.accountPage.spanish.details}}</h2>
+      </ion-col>
+      <!-- <ion-col size="3" class="ion-text-center">
+        <ion-button fill="clear" color="secondary">
+          <ion-icon name="mail-outline"></ion-icon> {{language === 'English' ? languageJson.accountPage.english.mail : languageJson.accountPage.spanish.mail}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="3" class="ion-text-center">
+        <ion-button fill="clear" color="secondary">
+          <ion-icon name="call-outline"></ion-icon> {{language === 'English' ? languageJson.accountPage.english.call : languageJson.accountPage.spanish.call}}
+        </ion-button>
+      </ion-col> -->
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.acc : languageJson.accountPage.spanish.acc}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="success" class="bold ion-no-margin">{{userData.company_name}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.code : languageJson.accountPage.spanish.code}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="success" class="bold ion-no-margin">{{compCode}}</h3>     
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-bottom">
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.adviser : languageJson.accountPage.spanish.adviser}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="secondary" class="bold ion-no-margin">{{userData.salesperson}}</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+<div class="div-card">
+  <ion-grid class="ion-padding border-bottom ">
+    <ion-row>
+      <ion-col size="8" class="ion-text-left">
+        <h2 class="pdt-name" color="primary">{{language === 'English' ? languageJson.accountPage.english.pinfo : languageJson.accountPage.spanish.pinfo}}</h2>
+      </ion-col>
+      <ion-col size="4" class="ion-text-right">
+        <ion-button fill="clear" color="secondary" routerLink="../my-account/editAccount">
+          <ion-icon name="create-outline"></ion-icon> {{language === 'English' ? languageJson.accountPage.english.update : languageJson.accountPage.spanish.update}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.name : languageJson.accountPage.spanish.name}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="success" class="bold ion-no-margin">{{accountowner}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.phone : languageJson.accountPage.spanish.phone}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="success" class="bold ion-no-margin">{{userData.phone}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.email : languageJson.accountPage.spanish.email}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="secondary" class="bold ion-no-margin">{{userData.email}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.country : languageJson.accountPage.spanish.country}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="secondary" class="bold ion-no-margin">{{userData.delivery_address.country}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.province : languageJson.accountPage.spanish.province}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="secondary" class="bold ion-no-margin">{{userData.delivery_address.state}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.city : languageJson.accountPage.spanish.city}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="secondary" class="bold ion-no-margin">{{userData.delivery_address.city}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.state : languageJson.accountPage.spanish.state}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="secondary" class="bold ion-no-margin">{{userData.sectorName}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-text-left">
+        <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.documentNumber : languageJson.accountPage.spanish.documentNumber}}</p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="secondary" class="bold ion-no-margin">{{userData.document_number}}</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+<ion-grid class="ion-padding">
+  <ion-row>
+    <ion-col size="12" class="ion-text-left">
+      <h2 class="pdt-name" color="primary">{{language === 'English' ? languageJson.accountPage.english.help : languageJson.accountPage.spanish.help}}</h2>
+      <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English' ? languageJson.accountPage.english.service : languageJson.accountPage.spanish.service}}</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>

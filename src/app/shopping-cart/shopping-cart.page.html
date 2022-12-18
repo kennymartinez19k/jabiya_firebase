@@ -1,0 +1,97 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar class="header">
+    <div class="bar-header">
+      <div class="info-header">
+        <ion-buttons slot="start" auto-hide="false">
+          <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <p>{{userData?.company_name}}</p>
+      </div>
+      <div class="img-header">
+        <img src="../../assets/images/logo.png" alt="">
+        <p class="mode-env">{{modeEnv}} {{version}}</p>
+      </div>
+    </div>
+    <br>
+    <div class="title-div">
+      <ion-title class="order-title">{{language === 'English'? languageJson.shopPage.english.yorder :languageJson.shopPage.spanish.yorder}}
+      </ion-title>
+      <ion-buttons class="btn-qty" slot="end">
+        <app-cart-button-total [isCart]="true" router="/shopping-cart"></app-cart-button-total>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container-shopping-profile">
+    <app-cart-address class="container-address"></app-cart-address>
+    <div class="container-item">
+      <app-cart-product-image class="info-addres-item" *ngFor="let orderLine of getOrderLines(); let i=index"
+        [product]="orderLine" [productIndex]="i">
+      </app-cart-product-image>
+    </div>
+    <div class="items-order-info">
+      <app-cart-points class="items ion-padding-horizontal border-bottom ion-padding-bottom" >
+      </app-cart-points>
+      <app-cart-totals class=" items ion-padding-horizontal border-bottom ion-padding-bottom">
+      </app-cart-totals>
+
+      <div class="div-card">
+        <div class="list-item-shopping">
+          <app-cart-payment-type class="items-payment">
+          </app-cart-payment-type>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<div [class.shadow]="errorConnection || showDeliveryDate || showAlertMinMount "></div>
+
+<div class="modal-container" *ngIf="errorConnection">
+    <div class="modal">
+      <h1 class="title">No pudimos subir el pedido!</h1>
+      <p class="text">Pero estaremos intentando enviarlo durante la próxima hora. Puede chequear en la opción de “Mi Cuenta”</p>
+      <p class="text">Y verifique que tiene una buena conexión de Internet. Eso puede ser la razon de este retraso</p>
+      <div class="buttons">
+        <button class="btn" (click)="successError()">OK</button>
+      </div>
+    </div>
+</div>
+<div class="modal-container-delivery-date" [class.isLessMiddleDay]="!isLessMiddleDay" *ngIf="showDeliveryDate">
+  <div class="modal">
+    <app-cart-delivery-date class=" items-payment"></app-cart-delivery-date>
+    <div class="buttons">
+      <button class="btn" (click)="showDeliveryDate = false">Cancelar</button>
+      <button class="btn" (click)="placeOrder()">Ordenar</button>
+    </div>
+  </div>
+</div>
+<div class="modal-container-alert"  *ngIf="showAlertMinMount">
+  <div class="modal">
+    <div>
+      <h1 class="title" >La Orden no pudo ser generada</h1>
+      <p>Aún no has alcanzado el monto minimo para realizar su pedido.</p>
+      <p>Agrega mas productos al carrito hasta realizar una orden de {{round(userData?.minAmountToOrder)}} o más para poder realizar su pedido</p>
+
+    </div>
+    <div class="buttons">
+      <button class="btn" (click)="showAlertMinMount = false">Ok</button>
+    </div>
+  </div>
+</div>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <h3 color="secondary" class="bold ion-no-margin ion-text-left">{{round(getTotal())}}</h3>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [class.btnDisabled]="getOrderLines().length == 0" [class.blinking]="getOrderLines().length > 0" [color]="getOrderLines().length == 0 ? '#8f8f8f':'primary'"  color="primary" fill="solid" expand="block" (click)="selectDeliveryDate()"
+        class="w-160 ion-padding-horizonatal ion-margin-horizontal btn">
+        Ordenar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+<div class="loader" *ngIf="loading"></div>

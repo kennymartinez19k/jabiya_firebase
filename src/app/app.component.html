@@ -1,0 +1,231 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+
+    <!-- <ion-menu contentId="main-content" type="overlay" *ngIf="userData !== null"> -->
+    <ion-menu contentId="main-content" type="overlay" *ngIf="language==='Spanish' && currentRoute?.urlAfterRedirects != '/authentication' && !showSideBar">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header (click)="openAndClose()" class="border-bottom">
+            <!-- <img src="../assets/images/icon.png" style="height: 60px;
+            margin-left: -12px;"> -->
+            {{userData?.company_name}}
+            <!-- Barbaro Bar --> 
+            <ion-button class="pos-rel ion-no-margin" fill="clear" size="small" color="dark">
+              <!-- <ion-icon  name="chevron-down-outline"></ion-icon> -->
+              <h6 class="change-account" *ngIf="!showDropdown">Cambiar</h6>
+              <ion-icon *ngIf="showDropdown" name="chevron-up-outline"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+          <ng-container *ngIf="showDropdown">
+            <ng-container>
+              <ion-list>
+                <ion-radio-group value="{{userData?.company_code}}">
+                  <ion-list-header>
+                    <ion-label>Seleccione su cuenta</ion-label>
+                  </ion-list-header>
+                  <ion-item *ngFor="let AccountsUnderUser of this.authService.getAccountsUnderUser()._value;let i=index" (click)="switchAccount(AccountsUnderUser)">
+                    <ion-label>{{AccountsUnderUser.company_name}}</ion-label>
+                    <ion-radio slot="start" value="{{AccountsUnderUser.company_code}}"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-list>
+            </ng-container>
+          </ng-container>
+          <!-- <ion-item class="bg-palewhite">
+              <ion-label>
+                <p class="wel-submsg">Barbaro Bar3</p>
+                </ion-label>
+          </ion-item> -->
+          <!-- <ion-note>hi@ionicframework.com</ion-note> -->
+          <ion-item button (click)="testClick()">
+            <ion-avatar slot="start">
+              <img src="./assets/images/user.png">
+            </ion-avatar>
+            <ion-label>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Código <b>{{userData?.company_code}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Customer code <b>{{userData?.clientId}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Vendedor <b>{{userData?.salesperson}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Sales person <b>{{userData?.salesperson}}</b></p>
+            </ion-label>
+          </ion-item>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" (click)="p.action && p.action()" lines="none" detail="false">
+              <!-- routerLinkActive="selected" -->
+              <ion-icon slot="start" name="{{ p.icon }}"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>    
+    <ion-menu contentId="main-content" type="overlay"  *ngIf="language==='English' && currentRoute?.urlAfterRedirects != '/authentication' && !showSideBar">
+      
+      <ion-content >
+        <ion-list id="inbox-list"  >
+          <ion-list-header (click)="openAndClose()">
+            <!-- <img src="../assets/images/icon.png" style="height: 60px;
+            margin-left: -12px;"> -->
+            {{userData?.company_name}}
+            <ion-button class="pos-rel ion-no-margin" fill="clear" size="small" color="dark">
+              <ion-icon *ngIf="!showDropdown" name="chevron-down-outline"></ion-icon>
+              <ion-icon *ngIf="showDropdown" name="chevron-up-outline"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+          <ng-container *ngIf="showDropdown">
+            <ng-container *ngFor="let AccountsUnderUser of this.authService.getAccountsUnderUser()._value;let i=index">
+              <ion-item class="bg-palewhite" (click)="switchAccount(AccountsUnderUser.store_account_id)">
+                <ion-label>
+                  <p class="wel-submsg">{{AccountsUnderUser.company_name}}</p>
+                </ion-label>
+              </ion-item>
+            </ng-container>
+          </ng-container>
+          <!-- <ion-item class="bg-palewhite">
+              <ion-label>
+                <p class="wel-submsg">Barbaro Bar3</p>
+                </ion-label>
+          </ion-item> -->
+          <!-- <ion-note>hi@ionicframework.com</ion-note> -->
+          <ion-item button (click)="testClick()">
+            <ion-avatar slot="start">
+              <img src="./assets/images/user.png">
+            </ion-avatar>
+            <ion-label>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Código <b>{{userData?.clientId}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Customer code <b>{{userData?.clientId}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Vendedor <b>{{userData?.salesperson}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Sales person <b>{{userData?.salesperson}}</b></p>
+            </ion-label>
+          </ion-item>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of englishPages; let i = index">
+            <!-- [queryParams]="{ ln: language}" -->
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
+              <!-- routerLinkActive="selected" -->
+              <ion-icon slot="start" name="{{ p.icon }}"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <!-- <ion-list id="labels-list">
+          <ion-list-header>Labels</ion-list-header>
+
+          <ion-item *ngFor="let label of labels" lines="none">
+            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
+            <ion-label>{{ label }}</ion-label>
+          </ion-item>
+        </ion-list> -->
+      </ion-content>
+    </ion-menu>
+    <aside class="aside" *ngIf="language==='Spanish' && currentRoute?.urlAfterRedirects != '/' && currentRoute?.urlAfterRedirects != '/register' && currentRoute?.urlAfterRedirects != '/forgotPassword' && showSideBar">
+      <div>
+        <ion-list id="inbox-list">
+          <ion-list-header (click)="openAndClose()">
+            <!-- <img src="../assets/images/icon.png" style="height: 60px;
+            margin-left: -12px;"> -->
+            {{userData?.company_name}}
+            <!-- Barbaro Bar --> 
+            <ion-button class="pos-rel ion-no-margin" fill="clear" size="small" color="dark">
+              <ion-icon *ngIf="!showDropdown" name="chevron-down-outline"></ion-icon>
+              <ion-icon *ngIf="showDropdown" name="chevron-up-outline"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+          <ng-container *ngIf="showDropdown">
+            <ng-container *ngFor="let AccountsUnderUser of this.authService.getAccountsUnderUser()._value;let i=index">
+          <ion-item class="bg-palewhite" (click)="switchAccount(AccountsUnderUser.store_account_id)">
+            <ion-label>
+              <p class="wel-submsg">{{AccountsUnderUser.company_name}}</p>
+              </ion-label>
+              </ion-item>
+              </ng-container>
+          </ng-container>
+          <!-- <ion-item class="bg-palewhite">
+              <ion-label>
+                <p class="wel-submsg">Barbaro Bar3</p>
+                </ion-label>
+          </ion-item> -->
+          <!-- <ion-note>hi@ionicframework.com</ion-note> -->
+          <ion-item button (click)="testClick()" class="border-bottom">
+            <ion-avatar slot="start">
+              <img src="./assets/images/user.png">
+            </ion-avatar>
+            <ion-label>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Código <b>{{userData?.company_code}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Customer code <b>{{userData?.clientId}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Vendedor <b>{{userData?.salesperson}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Sales person <b>{{userData?.salesperson}}</b></p>
+            </ion-label>
+          </ion-item>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
+              <!-- routerLinkActive="selected" -->
+              <ion-icon slot="start" name="{{ p.icon }}"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div>
+    </aside>
+    <aside class="aside" *ngIf="language==='English' && currentRoute?.urlAfterRedirects != '/authentication' && showSideBar">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header (click)="openAndClose()">
+            <!-- <img src="../assets/images/icon.png" style="height: 60px;
+            margin-left: -12px;"> -->
+            {{userData?.company_name}}
+            <!-- Barbaro Bar --> 
+            <ion-button class="pos-rel ion-no-margin" fill="clear" size="small" color="dark">
+              <ion-icon *ngIf="!showDropdown" name="chevron-down-outline"></ion-icon>
+              <ion-icon *ngIf="showDropdown" name="chevron-up-outline"></ion-icon>
+            </ion-button>
+          </ion-list-header>
+          <ng-container *ngIf="showDropdown">
+            <ng-container *ngFor="let AccountsUnderUser of this.authService.getAccountsUnderUser()._value;let i=index">
+              <ion-item class="bg-palewhite" (click)="switchAccount(AccountsUnderUser.store_account_id)" >
+                <ion-label>
+                  <p class="wel-submsg">{{AccountsUnderUser.company_name}}</p>
+                </ion-label>
+              </ion-item>
+            </ng-container>
+          </ng-container>
+          <!-- <ion-item class="bg-palewhite">
+              <ion-label>
+                <p class="wel-submsg">Barbaro Bar3</p>
+                </ion-label>
+          </ion-item> -->
+          <!-- <ion-note>hi@ionicframework.com</ion-note> -->
+          
+          <ion-item (click)="testClick()" class="border-bottom">
+            <ion-avatar slot="start">
+              <img src="./assets/images/user.png">
+            </ion-avatar>
+            <ion-label>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Código <b>{{userData?.clientId}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Customer code <b>{{userData?.clientId}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'Spanish'">Vendedor <b>{{userData?.salesperson}}</b></p>
+              <p class="wel-submsg" *ngIf="language === 'English'">Sales person <b>{{userData?.salesperson}}</b></p>
+            </ion-label>
+          </ion-item>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" >
+              <ion-icon slot="start" name="{{ p.icon }}"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </aside>
+    <ion-router-outlet id="main-content">
+      <div [class.shadow]="!online && showMsgOffline"></div>
+      <div class="modal-container" *ngIf="!online && showMsgOffline">
+        <div class="modal">
+          <h1 class="title">Verifique su conexion a internet!</h1>
+          <p class="text">Al parecer su dispositivo ha perdido la conexion a internet, compruebe que este conectado y intentelo nuevamente</p>
+          <div class="buttons">
+            <button class="btn" (click)="successError()">OK</button>
+          </div>
+        </div>
+      </div>
+    </ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

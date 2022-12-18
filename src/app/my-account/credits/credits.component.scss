@@ -1,0 +1,48 @@
+.pdt-description {
+  padding-right: 16px;
+}
+.border-bottom {
+  border-bottom: 1px solid #eee;
+}
+ion-label {
+  margin: 11px 20px 10px 8px;
+  font-size: 20px;
+}
+.pdt-price {
+  margin: 10px 0px !important;
+}
+.bold {
+  font-weight: 600 !important;
+}
+h3,
+p {
+  font-size: 14px;
+}
+h2 {
+  margin-top: 18px;
+  font-size: 17px;
+}
+.div-card {
+  border-bottom: 2px solid #ebebeb;
+  background-color: #fff;
+  padding: 0px 8px;
+}
+
+
+@media (min-width: 900px) {
+.div-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 20px;
+}
+.items-card{
+  width: 45%;
+}
+.text-left-item{
+  margin-left: 5px;
+  align-items: center;
+  display: flex;
+}
+}

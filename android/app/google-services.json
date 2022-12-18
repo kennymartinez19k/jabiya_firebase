@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "315547021076",
+    "project_id": "jabiya-83207",
+    "storage_bucket": "jabiya-83207.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315547021076:android:0fff45af0904179c201c01",
+        "android_client_info": {
+          "package_name": "io.jabiya.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315547021076-tqkbbb7pmg5uo1fbrbb9bbeot6m39jno.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.jabiya.starter",
+            "certificate_hash": "a78a60ddb4dec8cb317be2fbe6cc2608377117e3"
+          }
+        },
+        {
+          "client_id": "315547021076-rmn043sf5omg1g8i01rhfvv3086g2oo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCVX918hLXQ4gjyuGsn3XlLw4ZI9c9RDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315547021076-rmn043sf5omg1g8i01rhfvv3086g2oo3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

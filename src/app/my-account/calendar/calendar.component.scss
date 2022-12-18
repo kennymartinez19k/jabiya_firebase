@@ -1,0 +1,51 @@
+.bold {
+  font-weight: 600 !important;
+}
+h3,
+p {
+  font-size: 14px;
+}
+h2 {
+  margin-top: 18px;
+  font-size: 17px;
+}
+.week-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: -20px;
+}
+.month-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: -10px;
+}
+.date-count {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #d7d7d7;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 16px;
+  color: black;
+}
+.active-date {
+  background-color: #8fcf1e;
+  border: 1px solid #7cc300;
+  color: #ffffff;
+}
+.todayContainer{
+  border-bottom: 1px solid #000;
+}
+.active-color {
+  color: #84ca08;
+}
+ion-slides {
+  height: 100px;
+}
+.opacity {
+  opacity: 0.5;
+}

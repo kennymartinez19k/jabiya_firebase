@@ -1,0 +1,63 @@
+
+
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <div class="info-header">
+      <ion-buttons slot="start">
+        <ion-button routerLink="../home" color="dark" fill="clear">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <p>{{language === 'English' ? languageJson.logsPage.english.header : languageJson.logsPage.spanish.header}}</p>
+    </div>
+
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div class="reload-div">
+    <h4>{{language === 'English' ? languageJson.logsPage.english.listErrors : languageJson.logsPage.spanish.listErrors}}</h4>
+    <label for="" (click)="setReload()">
+      Refrescar
+      <ion-icon name="refresh-outline" (click)="setReload()" class="reload-icon" [class.reload]="reload"></ion-icon>
+    </label>
+  </div>
+
+  <div class="ion-padding table" *ngIf="logs.length > 0">
+    <ion-grid class="ion-no-padding ion-no-margin">
+      <div *ngFor="let log of logs" class="item">
+        <p><b>{{language === 'English' ? languageJson.logsPage.english.description : languageJson.logsPage.spanish.description}}: </b> {{log.message}}</p>
+        <p><b>{{language === 'English' ? languageJson.logsPage.english.date : languageJson.logsPage.spanish.date}}: </b>{{formatDate(log.date)}} </p>
+        <p *ngIf="log?.pushPlaceOrder"><b>{{language === 'English' ? languageJson.logsPage.english.pushPlaceOrder : languageJson.logsPage.spanish.pushPlaceOrder}}</b></p>
+        <p *ngIf="log?.qtyProducts"><b>{{language === 'English' ? languageJson.logsPage.english.qtyProducts : languageJson.logsPage.spanish.qtyProducts}} {{log.qtyProducts}} {{language === 'English' ? languageJson.logsPage.english.products : languageJson.logsPage.spanish.products}}</b></p>
+        <p *ngIf="log?.setParams"><b>{{language === 'English' ? languageJson.logsPage.english.setParams : languageJson.logsPage.spanish.setParams}}</b></p>
+        <p *ngIf="log?.currentOrder"><b>{{language === 'English' ? languageJson.logsPage.english.currentOrder : languageJson.logsPage.spanish.currentOrder}}</b></p>
+        <p *ngIf="log?.params"><b>{{language === 'English' ? languageJson.logsPage.english.params : languageJson.logsPage.spanish.params}}</b></p>
+        <p *ngIf="log?.params">
+          {{log?.params}}
+        </p>
+        <p *ngIf="log?.sendInfotoBackend"><b>{{language === 'English' ? languageJson.logsPage.english.sendInfotoBackend : languageJson.logsPage.spanish.sendInfotoBackend}}</b></p>
+        <p *ngIf="log?.longMessage"><b>{{language === 'English' ? languageJson.logsPage.english.sendInfotoBackend : languageJson.logsPage.spanish.sendInfotoBackend}}</b> {{log?.longMessage}}</p>
+        <p *ngIf="log?.hasError"><b>{{language === 'English' ? languageJson.logsPage.english.hasError : languageJson.logsPage.spanish.hasError}}</b></p>
+        <p *ngIf="log?.cartEmpty"><b>{{language === 'English' ? languageJson.logsPage.english.cartEmpty : languageJson.logsPage.spanish.cartEmpty}}</b></p>
+        <p *ngIf="log?.setInQueue"><b>{{language === 'English' ? languageJson.logsPage.english.setInQueue : languageJson.logsPage.spanish.setInQueue}}</b></p>
+        <p *ngIf="log?.moreDetails"><b>{{language === 'English' ? languageJson.logsPage.english.moreDetails : languageJson.logsPage.spanish.moreDetails}}: </b>{{log.moreDetails}}</p>
+        <p *ngIf="log?.message == '200 OK'"><b>{{language === 'English' ? languageJson.logsPage.english.messageOk : languageJson.logsPage.spanish.messageOk}}</b></p>
+      </div>
+    </ion-grid>
+    <ion-button (click)="deleteList()" class="ion-margin-vertical" size="default" color="primary" fill="outline" expand="block" >{{language === 'English'? languageJson.logsPage.english.delete :languageJson.logsPage.spanish.delete}}
+    </ion-button>
+  </div>
+
+  <div class="ion-padding table" *ngIf="logs.length == 0">
+    <ion-grid class="ion-no-padding ion-margin-top">
+     <h5>{{language === 'English' ? languageJson.logsPage.english.noErrors : languageJson.logsPage.spanish.noErrors}} </h5>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
+<div class="loader" *ngIf="loading" ></div>

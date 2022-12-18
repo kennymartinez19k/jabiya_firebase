@@ -1,0 +1,63 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <div class="info-header">
+      <ion-buttons slot="start">
+        <ion-button routerLink="../home" color="dark" fill="clear">
+          <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+        </ion-button>
+      </ion-buttons>
+      <p>{{userData?.company_name}}</p>
+    </div>
+
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <ion-item class="item-details" lines="none">
+    <div class="item-card" [class.zoomCard]="scale == 1">
+      <div #imageZoom  id="imageZoom" class="img" (click)="zoom()" >
+        <app-cached-img [class.zoomIn]="scale == 1" [class.zoomOut]="scale == 0" class="img-cached" [src]="{imageUrl: formatImage(productDetails.image_url), imageHash: formatHash(productDetails.image_hash)}"
+          [spinner]="false">
+        </app-cached-img>
+        <div *ngIf="productDetails.free_qty == 0"  [class.soldOut]="productDetails.free_qty == 0">
+          <img src="../../../assets/images/productoAgotado.png" alt="" srcset="">
+        </div>
+      </div>
+
+        <div class="item-body">
+          <div *ngIf="productDetails.free_qty == 0" [class.soldOut]="productDetails.free_qty == 0">
+          </div>
+          <div>
+            <h3 class="pdt-name text-title" color="secondary">{{productDetails.name}}</h3>
+            <div class="price">
+              <span *ngIf="productDetails.price !== productDetails.old_price"  class="is_discount mr-3">{{ round(productDetails.old_price)}}</span>
+              <h3 color="secondary" class="pdt-price text-subtitle mr-3">{{round(productDetails.price)}}</h3>
+              <h3 color="secondary" *ngIf="productDetails.available_threshold >= productDetails.free_qty" class="text-blue mr-3">(quedan {{productDetails.free_qty }})</h3>
+              <h3 color="secondary" *ngIf="productDetails.minimum_order_qty > 0" class="text-blue mr-3">Cantidad minima: {{productDetails.minimum_order_qty }}</h3>
+            </div>
+          </div>
+          
+          <ion-label class="info-productDetails">
+            <div class="quantity-btn">
+              <ion-button fill="outline" class="add-btn" (click)="reduceProductQuantity()">
+                <ion-icon slot="end" name="remove-outline"></ion-icon>
+              </ion-button>
+              <!-- <ion-text class="m-8" color="primary">{{}}</ion-text> -->
+              <input onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" (keyup)="changeQuantity($event)" min="0" type="number" [value]="productDetails.quantity == 0 ? null : productDetails.quantity " placeholder="0" class="edit-value"/>
+              <ion-button fill="outline" class="add-btn" (click)="addProductQuantity()">
+                <ion-icon slot="end" name="add-outline"></ion-icon>
+              </ion-button>
+            </div>
+            <ion-button [class.btnDisabled]="productDetails.quantity == 0" fill="solid" class="cart-btn" [color]="productDetails.quantity == 0 ? '#8f8f8f':'secondary'" 
+              (click)="addProduct()">Añadir</ion-button>
+          </ion-label>
+        </div>
+      </div>
+    
+  </ion-item>
+ 
+</ion-content>
+
+<div class="loader" *ngIf="loading"></div>

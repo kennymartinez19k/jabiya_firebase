@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container ion-padding ion-text-center" *ngIf="!showStatus">
+    <img src="../../../assets/images/otp-verification.png">
+    <h2 class="wel-msg">OTP Verfication</h2>
+    <p class="wel-submsg">Please enter the verification code we sent to your mobile number.</p>
+    <div class="ion-text-center ion-padding-vertical page-content">
+      <code-input [isCodeHidden]="false" [codeLength]="5" (codeChanged)="onCodeChanged($event)"
+        (codeCompleted)="onCodeCompleted($event)">
+      </code-input>
+    </div>
+    <div class="ion-text-center ion-padding-vertical">
+      <ion-label color="secondary">Didn't receive OTP?</ion-label>
+      <ion-label color="primary"> Resend OTP</ion-label>
+    </div>
+    <ion-button class="ion-margin-vertical" size="default" color="primary" expand="block"
+      (click)="onSubmit()">Verify & Proceed</ion-button>
+  </div>
+  <div class="login-container ion-padding ion-text-center" *ngIf="showStatus">
+    <div class="ion-text-center ion-padding-vertical page-content">
+      <img src="../../../assets/images/successfull.png">
+    </div>
+    <div class="ion-text-center ion-padding">
+      <h2 class="wel-msg">Signed up successfully!</h2>
+    </div>
+    <div class="ion-text-center ion-padding">
+      <p class="wel-submsg">Thank you for signing up! Login to check for special offers from us.</p>
+    </div>
+    <div class="ion-text-center ion-padding-vertical">
+      <ion-button class="ion-margin-vertical" size="default" color="primary" expand="block"
+        routerLink="../login">Go to Login</ion-button>
+    </div>
+  </div>
+</ion-content>

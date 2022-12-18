@@ -1,0 +1,120 @@
+
+
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <div class="info-header">
+      <ion-buttons slot="start">
+        <!-- <ion-menu-button></ion-menu-button> -->
+        <ion-button routerLink="../home" color="dark" fill="clear">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <p>{{userData?.company_name}}</p>
+    </div>
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [class.hidden]="searchValue">
+  <ion-slides pager="true" [options]="slideOpts"  class="img-point">
+    <ng-container *ngFor="let banner of banners;let i=index">
+      <ion-slide (click)="goToProductDetails(banner?.product_id)">
+        <!-- <img [src]="banner.image ? this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+        + banner.image) : '../../assets/images/banner1.png' "> -->
+        <app-cached-img [src]="{imageUrl: banner.image_url, imageHash: banner.image_hash}" [spinner]="false"></app-cached-img>            
+      </ion-slide>
+      </ng-container>
+  </ion-slides>
+  <div class="ion-padding ion-margin-bottom">
+    <h2 class="pdt-name title">{{language === 'English' ? languageJson.pointsPage.english.titlemsg : languageJson.pointsPage.spanish.titlemsg}}</h2>
+    <p class="pdt-description note" color="secondary">{{language === 'English' ? languageJson.pointsPage.english.pointsDescription : languageJson.pointsPage.spanish.pointsDescription}}</p>
+   
+    <div class="d-inline">
+    <h6 class="pdt-description" color="secondary">{{language === 'English' ? languageJson.pointsPage.english.subtitle : languageJson.pointsPage.spanish.subtitle}}</h6>
+    <h1 class="pdt-name primary-text mt-10 ion-margin-horizontal">{{partnerPoints}}</h1>
+    </div>
+  </div>
+
+  <div class="ion-padding table">
+    <h2 class="pdt-name title" >{{language === 'English' ? languageJson.pointsPage.english.pointsHistorybutton : languageJson.pointsPage.spanish.pointsHistorybutton}}</h2>
+    <p class="pdt-description note" color="secondary">{{language === 'English' ? languageJson.pointsPage.english.pointsDescription : languageJson.pointsPage.spanish.pointsDescription}}</p>
+    
+    <ion-grid class="ion-no-padding ion-margin-top">
+      
+      <ion-row class="border-bottom">
+        <ion-col size="5" class="ion-text-left">
+          <h3 color="primary" class="bold ion-no-margin">{{language === 'English' ? languageJson.pointsPage.english.orderNumber : languageJson.pointsPage.spanish.orderNumber}}</h3>
+        </ion-col>
+        <ion-col size="4" class="ion-text-left">
+          <h3 color="primary" class="bold ion-no-margin">{{language === 'English' ? languageJson.pointsPage.english.date : languageJson.pointsPage.spanish.date}}</h3>
+        </ion-col>
+        <ion-col size="3" class="ion-text-right">
+          <h3 color="primary" class="text-start bold ion-no-margin">{{language === 'English' ? languageJson.pointsPage.english.noOfPoints : languageJson.pointsPage.spanish.noOfPoints}}</h3>
+        </ion-col>
+      </ion-row>
+      <ng-container *ngFor="let pointsHistory of pointsHistoryData;let i=index">
+      <ion-row class="border-bottom bg-white">
+        <ion-col size="5" class="ion-text-left">
+          <p color="tertiary" class="pdt-description ion-no-margin">#{{pointsHistory.display_name}}</p>
+        </ion-col>
+        <ion-col size="4" class="ion-text-left">
+          <p color="tertiary" class="pdt-description col-bottom ion-no-margin">{{pointsHistory.date | date:'MMMM d, y' : '' : language === 'English' ? 'en' : 'es' }}</p>
+        </ion-col>
+        <ion-col size="3" class="ion-text-center">
+          <p color="tertiary" class="pdt-description col-bottom ion-no-margin">
+            <span class="{{pointsHistory.transaction_type === 'credit' ? 'green-text': 'red-text'}}">{{pointsHistory.transaction_type === 'credit' ? '+' + pointsHistory.points : '-' + pointsHistory.points}}</span>
+          </p>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ion-row class="ion-margin-vertical">
+      <ion-col size="8" class="ion-text-left">
+        <h3 color="primary" class="bold ion-no-margin">{{language === 'English' ? languageJson.pointsPage.english.totalPoints : languageJson.pointsPage.spanish.totalPoints}}</h3>
+      </ion-col>
+      <ion-col size="4" class="ion-text-right">
+        <h3 color="primary" class="bold ion-no-margin">{{partnerPoints}}</h3>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+  </div>
+  
+  <!-- <ion-button routerLink="../home" size="default" color="primary" expand="block" class="ion-margin  btn-item">
+    {{language === 'English' ? languageJson.pointsPage.english.bactToHomeButton : languageJson.pointsPage.spanish.bactToHomeButton}}
+  </ion-button> -->
+</ion-content>
+<ion-content  [class.hidden]="!searchValue">
+  <div class="search-item-container">
+      <ion-card class="pdt-card search-item" *ngFor="let result of resultSearchProduct;let i=index">
+            <ion-item>
+              <div class="pdt-quantity" slot="start">
+                <ion-button fill="outline" class="add-btn" (click)="decreaseProductCountFilter(result)">
+                  <ion-icon slot="end" name="remove-outline"></ion-icon>
+                </ion-button>
+                <ion-text class="m-8" color="primary">{{result?.order_easy_qty}}</ion-text>
+                <ion-button fill="outline" class="add-btn" (click)="increaseProductCountFilter(result)">
+                  <ion-icon slot="end" name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
+              <ion-thumbnail slot="start">
+                <img [src]="result.image ? this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+                + result.image) : '../../assets/images/pdt1.png' ">        
+              </ion-thumbnail>
+              <ion-label class="info-product">
+              <h3 class="pdt-name text" color="secondary">{{result?.name}}</h3>
+                <h3 class="pdt-name" color="secondary">
+                  <!-- [Descripción Empaque] -->
+                </h3>
+                <p color="tertiary" class="pdt-description">
+                  <!-- Detalles se incluyen aquí -->
+                </p>
+                <h3 color="secondary" class="pdt-price text">{{result?.currencySymbol}} {{result?.priceForShow}}</h3>
+                <ion-button [disabled]="result.order_easy_qty == 0" fill="solid" class="cart-btn" color="secondary" (click)="addToCart(result, i)">
+                  {{language === 'English' ? languageJson.pointsPage.english.addbutton :  languageJson.pointsPage.spanish.addbutton}}
+                </ion-button>
+              </ion-label>
+            </ion-item>
+      </ion-card>
+  </div>
+</ion-content>
+<div class="loader" *ngIf="loading" ></div>

@@ -1,0 +1,29 @@
+<ion-header collapse="fade" [translucent]="true">
+    <ion-toolbar class="header">
+        <div class="bar-header">
+            <div class="info-header">
+                <ion-buttons slot="start" auto-hide="false">
+                    <ion-back-button color="primary" text="" icon="arrow-back-outline"></ion-back-button>
+                </ion-buttons>
+                <p>{{userData?.company_name}}</p>
+            </div>
+            <div class="img-header">
+                <img src="../../../assets/images/logo.png" alt="">
+                <p class="mode-env">{{modeEnv}} {{version}}</p>
+            </div>
+        </div>
+        <div class="title-div">
+
+            <ion-searchbar showCancelButton="focus"
+                placeholder="{{language === 'English' ? languageJson.listPage.english.search : languageJson.listPage.spanish.search}}"
+                (keyup)="filterProduct($event)" class="search-bar"></ion-searchbar>
+            <ion-buttons slot="end">
+                <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+            </ion-buttons>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>

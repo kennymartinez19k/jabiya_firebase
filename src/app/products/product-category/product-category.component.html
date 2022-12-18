@@ -1,0 +1,122 @@
+
+<!-- <ion-content [fullscreen]="true"> -->
+  <div class="pdt-header">
+    <h1 class="pdt-header-title">{{subcategorytitle}}</h1>
+    <!-- <h1 class="pdt-header-title"  *ngIf="subCategories.length !== 0">{{subcategorytitle}}</h1>
+    <h1 class="pdt-header-title" *ngIf="subCategories.length === 0">{{subcategorytitle}}</h1> -->
+    </div>
+  <ion-list class="list-item-category">
+    <ng-container *ngFor="let subCategorie of subCategories;let i=index">
+
+      <ion-item class="ion-border-bottom item-category" (click)="gotoPdtList(subCategorie.id,subCategorie.name)">
+         <ion-thumbnail slot="start">
+           <!-- <img [src]="subCategorie.image ? this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+           + subCategorie.image) : '../../../assets/images/pdt-logo1.png' "> -->
+           <app-cached-img class="product-list" [src]="{imageUrl: subCategorie.image_url, imageHash: subCategorie.image_hash}" [spinner]="false"></app-cached-img>            
+         </ion-thumbnail>
+       <ion-label>
+         <p class="pdt-description" color="secondary">{{subCategorie.name}}</p>
+       </ion-label>
+       </ion-item>
+      
+     </ng-container>
+     
+      <div class="login-container ion-padding ion-text-center list-without-category"  *ngIf="subCategories.length===0">
+        <div class="ion-text-center ion-padding-vertical page-content">
+          <img src="../../../assets/images/noproducts.png" width="100px">
+        </div>
+        <div class="ion-text-center ion-padding">
+          <h2 *ngIf="language=== 'Spanish'" class="wel-msg">Actualmente esta categoría no posee subcategorías.</h2>
+          <h2  *ngIf="language=== 'English'"  class="wel-msg">Currently this category has no subcategories.</h2>
+        </div>
+        <!-- <div class="ion-text-center ion-padding">
+          <p class="wel-submsg">Thank you for signing up! Login to check for special offers from us.</p>
+        </div> -->
+        <!-- <div class="ion-text-center ion-padding-vertical">
+          <ion-button class="ion-margin-vertical" size="default" color="primary" expand="block"
+            routerLink="../products">Go back</ion-button>
+        </div> -->
+      </div>
+     <!-- <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/images/pdt-logo1.png">
+        </ion-thumbnail>
+      <ion-label>
+        <p class="pdt-description" color="secondary">Persidente Regular </p>
+      </ion-label>
+    </ion-item>
+     <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/images/pdt-logo2.png">
+      </ion-thumbnail>
+    <ion-label>
+      <p class="pdt-description" color="secondary">Corona </p>
+    </ion-label>
+  </ion-item>
+   <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+    <ion-thumbnail slot="start">
+      <img src="../../../assets/images/pdt-logo1.png">
+    </ion-thumbnail>
+  <ion-label>
+    <p class="pdt-description" color="secondary">Persidente Regular </p>
+  </ion-label>
+</ion-item>
+ <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+  <ion-thumbnail slot="start">
+    <img src="../../../assets/images/pdt-logo2.png">
+  </ion-thumbnail>
+<ion-label>
+  <p class="pdt-description" color="secondary">Corona </p>
+</ion-label>
+</ion-item>
+ <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+  <ion-thumbnail slot="start">
+    <img src="../../../assets/images/pdt-logo1.png">
+  </ion-thumbnail>
+<ion-label>
+  <p class="pdt-description" color="secondary">Persidente Regular </p>
+</ion-label>
+</ion-item>
+ <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+  <ion-thumbnail slot="start">
+    <img src="../../../assets/images/pdt-logo2.png">
+  </ion-thumbnail>
+<ion-label>
+  <p class="pdt-description" color="secondary">Corona </p>
+</ion-label>
+</ion-item>
+ <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+  <ion-thumbnail slot="start">
+    <img src="../../../assets/images/pdt-logo1.png">
+  </ion-thumbnail>
+<ion-label>
+  <p class="pdt-description" color="secondary">Persidente Regular </p>
+</ion-label>
+</ion-item>
+ <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+  <ion-thumbnail slot="start">
+    <img src="../../../assets/images/pdt-logo2.png">
+  </ion-thumbnail>
+<ion-label>
+  <p class="pdt-description" color="secondary">Corona </p>
+</ion-label>
+</ion-item>  
+ <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+  <ion-thumbnail slot="start">
+    <img src="../../../assets/images/pdt-logo1.png">
+  </ion-thumbnail>
+<ion-label>
+  <p class="pdt-description" color="secondary">Persidente Regular </p>
+</ion-label>
+</ion-item>
+ <ion-item class="ion-border-bottom" (click)="gotoPdtList()">
+  <ion-thumbnail slot="start">
+    <img src="../../../assets/images/pdt-logo2.png">
+  </ion-thumbnail>
+<ion-label>
+  <p class="pdt-description" color="secondary">Corona </p>
+</ion-label>
+</ion-item> -->
+  </ion-list>
+  <!-- </ion-content> -->
+  <div class="loader" *ngIf="loading" ></div>

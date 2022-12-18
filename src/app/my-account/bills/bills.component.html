@@ -1,0 +1,34 @@
+<ion-grid class="border-bottom">
+  <ion-row class="ion-padding border-bottom">
+    <ion-col size="4" class="ion-text-left">
+      <h3 color="primary" class="bold ion-no-margin">#{{language ==='English'? languageJson.billPage.english.inv :languageJson.billPage.spanish.inv}}</h3>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center d-inline">
+      <h3 color="primary" class="bold ion-no-margin">{{language ==='English'? languageJson.billPage.english.date :languageJson.billPage.spanish.date}}</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <h3 color="primary" class="bold ion-no-margin">Total</h3>
+    </ion-col>
+  </ion-row>
+    <ion-row class="padding-small border-bottom bg-white" (click)="gotoBillDetails(invoice.id)"  *ngFor="let invoice of invoiceRes | paginate: {  itemsPerPage:5, currentPage: currentPage } let i = index">
+    <ion-col size="4" class="ion-text-left">
+      <h3 color="tertiary" class="ion-no-margin">{{invoice.name}}</h3>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center">
+      <h3 color="tertiary" class="ion-no-margin">{{invoice.invoice_date}}</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right">
+      <h3 color="tertiary" class="ion-no-margin">{{round(invoice.amount_total)}}</h3>
+    </ion-col>
+    <ion-col size="1" class="ion-text-right">
+      <ion-icon name="chevron-forward-outline" color="secondary" class="arrow"></ion-icon>
+    </ion-col>
+    </ion-row>
+  <ion-row>
+    <ion-col col-8 class="ion-no-padding">
+      <nav data-pagination margin-top>
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      </nav>
+    </ion-col>
+  </ion-row>
+</ion-grid>

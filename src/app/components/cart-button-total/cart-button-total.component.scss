@@ -1,0 +1,17 @@
+.round-btn{
+    box-shadow: 0px 0px 5px #fff;
+    font-size: 12px;
+    padding: 3px;
+    margin-right: 6px;
+
+}
+.blinking{
+    animation: blinkingColor .5s infinite;
+    border: 3px dashed #39b03e;
+}
+
+@keyframes blinkingColor {
+    50% { border-color: #d10000;}
+}
+
+  

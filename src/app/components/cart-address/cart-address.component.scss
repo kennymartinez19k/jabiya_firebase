@@ -1,0 +1,24 @@
+h3,
+p {
+    font-size: 14px;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #eee;
+}
+
+.pdt-description {
+    padding-right: 16px;
+}
+
+.info-address {
+    width: 100%;
+}
+@media (min-width: 900px) {
+
+    .border-bottom {
+        border-bottom: 1px solid #eee;
+        margin: 10px;
+        background-color: #fff;
+    }
+}

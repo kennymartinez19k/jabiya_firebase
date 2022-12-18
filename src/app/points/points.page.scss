@@ -1,0 +1,194 @@
+.pdt-name {
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+.pdt-description {
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+.primary-text {
+  color: #39b03e;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.text-underline {
+  text-decoration: underline;
+}
+.d-inline {
+  display: flex;
+}
+.slider-img{
+  width: 100% !important;
+  padding: 10px;
+}
+.search-item-container{
+  margin: 40px 10px 0px;
+}
+.cart-btn {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  height: 36px;
+  --border-radius: 6px;
+  width: 92%;
+  bottom: 10px;
+  position: absolute;
+}
+
+.search-item{
+  background-color: #fff;
+  border-radius: 5px;
+  width: 99%;
+  margin: 15px 0px;
+}
+.search-item ion-item img{
+  height: 55%;
+}
+.info-product .text{
+  font-size: 11px !important;
+}
+ion-thumbnail {
+  /* margin-top: 10px; */
+  /* margin-bottom: 20px; */
+  width: 80px;
+  height: 130px;
+  --padding-start: 8px;
+  margin-inline-end: 30px;
+}
+ion-label {
+  margin-top: -36px;
+}
+
+ion-content {
+  --background: #f3f3f3;
+  top: -16px;
+}
+ion-item {
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+}
+
+@media (min-width: 600px) {
+ .img-point{
+   padding: 15px;
+ }
+  .btn-item{
+    margin: 0px 25px 20px auto;
+    width: 28%;
+    max-width: 250px;
+  }
+  .search-bar{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0px 0px 0px auto;
+    width: 40%;
+  }
+
+  .search-item-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .search-item{
+    width: 49%;
+  }
+
+}
+.hidden{
+  display: none !important;
+  pointer-events: none;
+}
+
+.pdt-name {
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+.pdt-description {
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+.primary-text {
+  color: #39b03e;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.text-underline {
+  text-decoration: underline;
+}
+ion-title {
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  margin-left: -20px;
+}
+ion-content {
+  --background: #fbfbfb;
+}
+ion-thumbnail {
+  margin-top: 0px;
+  margin-bottom: 8px;
+  width: 50px;
+  height: 70px;
+  --padding-start: 8px;
+  margin-inline-end: 8px;
+}
+.pdt-description {
+  padding-right: 16px;
+}
+ion-item {
+  border-bottom: 2px solid #ebebeb;
+  --inner-border-width: 0 0 0 0;
+}
+.border-bottom {
+  border-bottom: 1px solid #eee;
+}
+
+.bold {
+  font-weight: 600 !important;
+}
+h3,
+p {
+  font-size: 14px;
+}
+h2 {
+  margin-top: 18px;
+  font-size: 17px;
+}
+.green-text {
+  color: #2fdf75;
+}
+.red-text {
+  color: red;
+}
+.bg-white {
+  background-color: #fff;
+}
+.div-card {
+  border-bottom: 2px solid #ebebeb;
+  background-color: #fff;
+  padding: 0px 8px;
+}
+.table ion-row{
+  padding: 15px 0px;
+}
+.info-header{
+  display: flex;
+  align-items: center;
+}
+.info-header p{
+  margin-left:5px;
+  color: green;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.title{
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.note{
+  color: red
+}
+.text-start{
+  text-align: left;
+}

@@ -1,0 +1,30 @@
+<ion-item class="items-for-shop">
+  <ion-thumbnail slot="start">
+    <app-cached-img [src]="{imageUrl: product.image_url, imageHash: product.image_hash}" [spinner]="false">
+    </app-cached-img>
+  </ion-thumbnail>
+  <ion-button fill="clear" slot="end" color="danger" class="del-btn" (click)="removeProduct()">
+    <ion-icon name="close-circle-outline"></ion-icon>
+  </ion-button>
+  <ion-label>
+    <h6 color="tertiary" class="pdt-description">{{product.productName}}</h6>
+    <h3 color="secondary" *ngIf="product.available_threshold >= product.free_qty" class="pdt-price text text-blue">(quedan {{ product.free_qty }})</h3>
+    <h3 color="secondary" *ngIf="product.minimum_order_qty > 0" class="text-blue text mr-3">Cantidad minima: {{product.minimum_order_qty }}</h3>
+    <h3 color="secondary" class="pdt-price ion-text-right">
+      <span *ngIf="product.price !== product.oldPrice"  class="is_discount">{{ round(product.oldPrice * product.quantity)}}</span>
+
+      <span>{{round(product.price * product.quantity)}}</span>
+    </h3>
+    <div class="pdt-quantity" slot="start">
+      <ion-button fill="outline" class="add-btn" (click)="reduceProductQuantity()">
+        <ion-icon slot="end" name="remove-outline"></ion-icon>
+      </ion-button>
+      <!-- <ion-text class="m-8" color="secondary">{{product.quantity}}</ion-text> -->
+      <input onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" (keyup)="changeQuantity($event)" min="0" type="number" [value]="product.quantity == 0 ? null : product.quantity " placeholder="0" class="edit-value"/>
+
+      <ion-button fill="outline" class="add-btn" (click)="addProductQuantity()">
+        <ion-icon slot="end" name="add-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-label>
+</ion-item>

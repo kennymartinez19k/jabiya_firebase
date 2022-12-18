@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-menu-button></ion-menu-button> -->
+      <ion-button routerLink="../home" color="dark" fill="clear">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{language === 'English'? languageJson.settingPage.english.config :languageJson.settingPage.spanish.config}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <div class="container-config">
+    <ion-list class="items-config">
+      <ion-list-header class="bg-palewhite">
+        <h2 class="pdt-name" color="primary">{{language === 'English'? languageJson.settingPage.english.acc :languageJson.settingPage.spanish.acc}}</h2>
+      </ion-list-header>
+      <!-- <ion-item (click)="gotoPass()"> -->
+        <ion-item (click)="gotoPass()">
+        <ion-label>
+          <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English'? languageJson.settingPage.english.pass :languageJson.settingPage.spanish.pass}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item (click)="showModalDesactive = true">
+        <ion-label>
+          <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English'? languageJson.settingPage.english.deleteAccount :languageJson.settingPage.spanish.deleteAccount}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <!-- <ion-list>
+      <ion-list-header class="bg-palewhite">
+        <h2 class="pdt-name" color="primary">{{language === 'English'? languageJson.settingPage.english.know :languageJson.settingPage.spanish.know}}</h2>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>
+          <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English'? languageJson.settingPage.english.term :languageJson.settingPage.spanish.term}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <p color="tertiary" class="pdt-description ion-no-margin">{{language === 'English'? languageJson.settingPage.english.policy :languageJson.settingPage.spanish.policy}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list> -->
+    <ion-item class="bg-palewhite border-top items-config">
+      <ion-label>
+        <h2 class="pdt-name" color="primary">{{language === 'English'? languageJson.settingPage.english.version :languageJson.settingPage.spanish.version}}</h2>
+        <p color="tertiary" class="pdt-description text-capitalize ion-padding-top">{{modeEnv}} {{version}}</p>
+      </ion-label>
+    </ion-item>
+  </div>
+</ion-content>
+
+<div [class.shadow]="showModalDesactive"></div>
+<div class="modal-container" *ngIf="showModalDesactive">
+  <div class="modal-inactive">
+    <h1 class="title">Esta seguro que desea eliminar su cuenta?</h1>
+    <div class="buttons">
+      <button class="btn" (click)="showModalDesactive = false">Cancelar</button>
+      <button class="btn delete" (click)="deleteAccount()">Eliminar</button>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+
+.div-card {
+  border-bottom: 2px solid #ebebeb;
+  background-color: #fff;
+  padding: 0px 8px;
+}
+.table ion-row{
+  padding: 15px 0px;
+}
+.info-header{
+  display: flex;
+  align-items: center;
+}
+.info-header p{
+  margin-left:5px;
+  color: green;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.title{
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.note{
+  color: red
+}
+.text-start{
+  text-align: left;
+}
+.reload-icon{
+  font-size: 20px;
+  transition-duration: .8s;
+}
+.reload{
+  transform:rotate(720deg);
+}
+.reload-div{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px 15px;
+}
+.reload-div h4{
+  margin: 0px;
+}
+.reload-div label{
+  font-size: 14px;
+  display: flex;
+}
+.item{
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0px 0px 1px;
+  padding: 10px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,59 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" text="" icon="arrow-back-outline" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{language === 'English' ? languageJson.pointsHistoryPage.english.titlemsg :
+      languageJson.pointsHistoryPage.spanish.titlemsg}}</ion-title>
+    <ion-buttons slot="end">
+      <app-cart-button-total router="/shopping-cart"></app-cart-button-total>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-padding border-bottom">
+      <ion-col size="5" class="ion-text-left">
+        <h3 color="primary" class="bold ion-no-margin">{{language === 'English' ?
+          languageJson.pointsHistoryPage.english.orderNumber : languageJson.pointsHistoryPage.spanish.orderNumber}}</h3>
+      </ion-col>
+      <ion-col size="4" class="ion-text-left">
+        <h3 color="primary" class="bold ion-no-margin">{{language === 'English' ?
+          languageJson.pointsHistoryPage.english.date : languageJson.pointsHistoryPage.spanish.date}}</h3>
+      </ion-col>
+      <ion-col size="3" class="ion-text-right">
+        <h3 color="primary" class="bold ion-no-margin">{{language === 'English' ?
+          languageJson.pointsHistoryPage.english.noOfPoints : languageJson.pointsHistoryPage.spanish.noOfPoints}}</h3>
+      </ion-col>
+    </ion-row>
+    <ng-container *ngFor="let pointsHistory of pointsHistoryData;let i=index">
+      <ion-row class="ion-padding border-bottom bg-white">
+        <ion-col size="5" class="ion-text-left">
+          <p color="tertiary" class="pdt-description ion-no-margin">#{{pointsHistory.display_name}}</p>
+        </ion-col>
+        <ion-col size="4" class="ion-text-left">
+          <p color="tertiary" class="pdt-description col-bottom ion-no-margin">{{pointsHistory.date | date:'MMMM d, y' :
+            '' : language === 'English' ? 'en' : 'es' }}</p>
+        </ion-col>
+        <ion-col size="3" class="ion-text-center">
+          <p color="tertiary" class="pdt-description col-bottom ion-no-margin">
+            <span
+              class="{{pointsHistory.transaction_type === 'credit' ? 'green-text': 'red-text'}}">{{pointsHistory.transaction_type
+              === 'credit' ? '+' + pointsHistory.points : '-' + pointsHistory.points}}</span>
+          </p>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ion-row class="ion-padding ion-margin-vertical">
+      <ion-col size="6" class="ion-text-left">
+        <h3 color="primary" class="bold ion-no-margin">{{language === 'English' ?
+          languageJson.pointsHistoryPage.english.totalPoints : languageJson.pointsHistoryPage.spanish.totalPoints}}</h3>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <h3 color="primary" class="bold ion-no-margin">{{partnerPoints}}</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

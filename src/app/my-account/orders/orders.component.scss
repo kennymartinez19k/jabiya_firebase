@@ -1,0 +1,108 @@
+.pdt-description {
+  padding-right: 16px;
+}
+.border-bottom {
+  border-bottom: 1px solid #eee;
+}
+ion-label {
+  margin: 11px 20px 10px 8px;
+  font-size: 20px;
+}
+.pdt-price {
+  margin: 10px 0px !important;
+}
+.bold {
+  font-weight: 600 !important;
+}
+h3,
+p {
+  font-size: 14px;
+}
+h2 {
+  margin-top: 18px;
+  font-size: 17px;
+}
+.div-card {
+  border-bottom: 2px solid #ebebeb;
+  background-color: #fff;
+  padding: 0px 0px;
+}
+.date-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  // background-color: #353535;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 20px;
+  color: black;
+  margin-right: 16px;
+}
+.fs-42 {
+  font-size: 42px;
+}
+.text-danger{
+  color: red !important;
+  margin-top: 10px !important;
+}
+
+.wel-submsg{
+  margin-top: 20px;
+}
+
+@media (min-width: 600px){
+  .container-orders{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .title-orders{
+    width: 100%;
+  }
+  .orders{
+    width: 45%;
+  }
+}
+.no-invoice{
+  color: red;
+}
+.price{
+  margin: 3px 0px;
+}
+ion-text{
+  font-size: 14px;
+}
+.pending{
+  background-color: #ddd !important;
+}
+.processing{
+  background-color: #eaeb24;
+}
+.enRoute{
+  background-color: #aacaf9 !important;
+}
+.delivered{
+  background-color: #b3de66 !important;
+}
+.cancelled{
+  background-color: #ff6262 !important;
+}
+.reload-icon{
+  font-size: 20px;
+  transition-duration: .8s;
+}
+.reload{
+  transform:rotate(720deg);
+}
+.reload-div{
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
+.reload-div label{
+  font-size: 14px;
+  display: flex;
+  margin-right: 10px;
+}
+
+
+
